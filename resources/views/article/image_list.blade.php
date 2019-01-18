@@ -1,5 +1,9 @@
 @extends('layouts.app')
-@section('title',$category_left[0]['title'])
+@section('title', $category_left[0]['title'])
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<style type="text/css">
+    .welcom,.lan{ font-size: 12px ; padding-top: 8px}
+</style>
 
 @section('content')
     <!--seb open-->
@@ -43,32 +47,28 @@
                     </tr>
                 </table>
             </div>
-            @if(count($article))
-
+            @if(count($article_lists))
 
             <div class="right_mid">
-                <div class="right_tt">
-                    <div class="xinw_title">{{ $article[0]['title'] }}</div>
-                    <div class="time">
-                        <span>点击次数:
-                            {{ $article[0]['click_number'] }}
-                        </span>
-                        <span>更新时间:{{ $article[0]['created_at'] }}</span>
+                <div class="equip_t">
+                @foreach($article_lists as $lists )
+                    <div class="equip_one">
+                        <div class="equip_img">
+                            <a href="{{ route('show',['category_id'=>$lists['cateaory_id'],'article_id'=>$lists['id']]) }}">
+                                <img src="{{ asset('uploads').'/'.$lists['images'] }}">
+                            </a>
+                        </div>
+                        <div class="equip_text">管线探测仪</div>
                     </div>
-                    <div class="xinw_t">
+                @endforeach
 
-                        {!! $article[0]['content'] !!}
-
-                    </div>
-                    <div style="margin-top: 20px;">
-                        @if($article[0]['enclosure'])
-                            <a style="color: red" href="{{ route('down',['id'=>$article[0]['id']]) }}">请下载附件</a>
-
-                        @endif  
+                  <div class="clear"></div>
+                    <div style="margin:20px 0;">
+                        {{ $article_lists->links() }}
                     </div>
 
                 </div>
-            </div>
+              </div>
 
             @else
             <div class="not-found">访问内容不存在</div>
@@ -77,7 +77,6 @@
         </div>
 
         <div class="clear"></div>
-
     </div>
 
     <!--seb end-->

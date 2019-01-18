@@ -1,36 +1,131 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>最简单的jQuery轮播图-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<style>
+#lunbobox {
+	width:500px;
+	height:300px;
+	position:relative;
+}
+.lunbo {
+	width:500px;
+	height:300px;
+}
+.lunbo img {
+	width:500px;
+	height:300px;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+#lunbobox ul {
+	width:285px;
+	position:absolute;
+	bottom:10px;
+	right:0px;
+	z-index:5;
+}
+#lunbobox ul li {
+	cursor:pointer;
+	width:10px;
+	height:4px;
+	border:1px solid #cccccc;
+	float:left;
+	list-style:none;
+	background:#cccccc;
+	text-align:center;
+	margin:0px 5px 0px 0px;
+}
+#toleft {
+	display:none;
+	width:30px;
+	height:100px;
+	font-size:40px;
+	line-height:100px;
+	text-align:center;
+	color:#f4f4f4;
+	/*background:#cccccc;
+	*/
+    /*background:url("../images/toleft.jpg")no-repeat center;
+	*/
+    position:absolute;
+	top:90px;
+	left:12px;
+	cursor:pointer;
+	z-index:99;
+	opacity:0.4;
+}
+#toright {
+	display:none;
+	width:30px;
+	height:100px;
+	font-size:40px;
+	line-height:100px;
+	text-align:center;
+	color:#f4f4f4;
+	/*background:#cccccc;
+	*/
+    position:absolute;
+	top:90px;
+	right:0px;
+	cursor:pointer;
+	z-index:99;
+	opacity:0.4;
+}
+</style>
+</head>
+<body>
+<div class="middle_right">   </div>
+    <div id="lunbobox">
+<!--         <div id="toleft">
+            &lt;</div> -->
+                <div class="lunbo">
+                    <a href="#"><img src="http://www.jq22.com/img/cs/500x300a.png"></a>
+                    <a href="#"><img src="http://www.jq22.com/img/cs/500x300b.png"></a>
+                    <a href="#"><img src="http://www.jq22.com/img/cs/500x300c.png"></a>
+                    <a href="#"><img src="http://www.jq22.com/img/cs/500x300d.png"></a>
+                    <a href="#"><img src="http://www.jq22.com/img/cs/500x300.png"></a>
+                </div>
+                <!-- <div id="toright">&gt;</div> -->
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <span></span>
+        </div>
+ 
 
+<script>
 ///轮播
-// $(function() {
-//     //$("#toright").hide();
-//     //$("#toleft").hide();
-//     $('#toright').hover(function() {
-//         $("#toleft").hide()
-//     }, function() {
-//         $("#toleft").show()
-//     })
-//     $('#toleft').hover(function() {
-//         $("#toright").hide()
-//     }, function() {
-//         $("#toright").show()
-//     })
-// })
-
 $(function() {
+    //$("#toright").hide();
+    //$("#toleft").hide();
+    $('#toright').hover(function() {
+        $("#toleft").hide()
+    }, function() {
+        $("#toleft").show()
+    })
+    $('#toleft').hover(function() {
+        $("#toright").hide()
+    }, function() {
+        $("#toright").show()
+    })
+})
 
 var t;
 var index = 0;
-
-//获取图片的数量
-
-var article_number = $(".lunbo").children('a').length;
-
-
 /////自动播放
 t = setInterval(play, 3000)
 
 function play() {
     index++;
-    if (index > article_number) {
+    if (index > 4) {
         index = 0
     }
     // console.log(index)
@@ -67,7 +162,7 @@ $("#toleft").click(function() {
     index--;
     if (index <= 0) //判断index<0的情况为：开始点击#toright  index=0时  再点击 #toleft 为负数了 会出错
     {
-        index = article_number
+        index = 4
     }
     console.log(index);
     $("#lunbobox ul li").eq(index).css({
@@ -82,7 +177,7 @@ $("#toleft").click(function() {
 
 $("#toright").click(function() {
     index++;
-    if (index > article_number) {
+    if (index > 4) {
         index = 0
     }
     console.log(index);
@@ -126,7 +221,7 @@ $("#lunbobox ul li,.lunbo a img,#toright,#toleft ").hover(
 
         function play() {
             index++;
-            if (index > article_number) {
+            if (index > 4) {
                 index = 0
             }
             $("#lunbobox ul li").eq(index).css({
@@ -138,5 +233,7 @@ $("#lunbobox ul li,.lunbo a img,#toright,#toleft ").hover(
             $(".lunbo a ").eq(index).fadeIn(1000).siblings().fadeOut(1000);
         }
     })
+</script>
 
-})
+</body>
+</html>

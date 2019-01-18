@@ -29,7 +29,7 @@
 <div class="top">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td width="790" align="left" valign="top" class="welcom">欢迎访问宁波繁安安全技术服务有限公司网站！</td>
+            <td width="790" align="left" valign="top" class="welcom">{{ $configs['website'] }}</td>
             <td width="180" align="left" valign="top" class="lan"><div id="showtime"></div></td>
         </tr>
     </table>

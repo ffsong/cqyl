@@ -40,8 +40,8 @@ class CategoryController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('文章分类')
+            ->description('列表')
             ->body($this->grid());
     }
 
@@ -114,8 +114,13 @@ class CategoryController extends Controller
         $grid->title('分类名称');
         $grid->pid('上级分类')->using(Category::getAll());
         $grid->sort('排序')->editable();
-        $grid->is_top('置顶（是否展示在首页）')->switch($this->is_top);
-        $grid->is_right('侧栏（是否展示在侧栏）')->switch($this->is_right);
+        $grid->is_top('首页置顶')->switch($this->is_top);
+        $grid->is_right('首页侧栏')->switch($this->is_right);
+        $grid->type('类型')->using([
+            1 => '列表',
+            2 => '单页',
+            3 => '图片'
+        ]);
         $grid->created_at('创建时间');
         $grid->updated_at('更改时间');
 
@@ -172,6 +177,8 @@ class CategoryController extends Controller
 //        $form->switch('status', '状态')->states($this->is_top)->default(1);
         $form->switch('is_top', '置顶（nav是否展示在首页）')->states($this->is_top)->default(2);
         $form->switch('is_right', '侧栏（是否展示在首页侧栏）')->states($this->is_right)->default(2);
+
+        $form->radio('type','类型')->options(['1' => '列表', '2'=> '单页','3'=>'图片'])->default(1);
 
         return $form;
     }

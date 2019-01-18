@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',$category_left[0]['title'])
+@section('title', $category_left[0]['title'])
 
 @section('content')
     <!--seb open-->
@@ -35,7 +35,7 @@
         <div class="box2">
             <div class="right_top">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                     <tr>
+                    <tr>
                         <td width="200" align="left" valign="top" class="right_l">
                             {{ $category_left[0]['title'] }}
                         </td>
@@ -44,29 +44,19 @@
                 </table>
             </div>
             @if(count($article))
-
-
             <div class="right_mid">
                 <div class="right_tt">
-                    <div class="xinw_title">{{ $article[0]['title'] }}</div>
-                    <div class="time">
-                        <span>点击次数:
-                            {{ $article[0]['click_number'] }}
-                        </span>
-                        <span>更新时间:{{ $article[0]['created_at'] }}</span>
-                    </div>
                     <div class="xinw_t">
 
-                        {!! $article[0]['content'] !!}
+                        {!! $article['content'] !!}
 
                     </div>
                     <div style="margin-top: 20px;">
-                        @if($article[0]['enclosure'])
-                            <a style="color: red" href="{{ route('down',['id'=>$article[0]['id']]) }}">请下载附件</a>
+                        @if($article['enclosure'])
+                            <a style="color: red" href="{{ route('down',['id'=>$article['id']]) }}">请下载附件</a>
 
                         @endif  
                     </div>
-
                 </div>
             </div>
 
@@ -77,7 +67,6 @@
         </div>
 
         <div class="clear"></div>
-
     </div>
 
     <!--seb end-->

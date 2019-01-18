@@ -13,12 +13,13 @@
     <link href="{{ asset('css/css.css')  }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/lrtk.css')  }}" rel="stylesheet" type="text/css" />
 
-    <script src="{{ asset('js/jquery1.42.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/jquery.superslide.2.1.1.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/sohuflash_1.js') }}" type="text/javascript"></script>
+    <!-- <script src="{{ asset('js/jquery1.42.min.js') }}" type="text/javascript"></script> -->
+    <!-- <script src="{{ asset('js/jquery.superslide.2.1.1.js') }}" type="text/javascript"></script> -->
+    <!-- <script src="{{ asset('js/sohuflash_1.js') }}" type="text/javascript"></script> -->
     <script src="{{ asset('js/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/koala.min.1.5.js') }}" type="text/javascript"></script>
-
+    <!-- <script src="{{ asset('js/koala.min.1.5.js') }}" type="text/javascript"></script> -->
+    <script src="{{ asset('js/hits.js') }}" type="text/javascript"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 </head>
 
 <body onload="time()">

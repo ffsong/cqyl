@@ -34,7 +34,7 @@ class ArticleController extends Controller
     {
         return $content
             ->header('文章')
-            ->description('description')
+            ->description('列表')
             ->body($this->grid());
     }
 
@@ -48,7 +48,7 @@ class ArticleController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('查看')
+            ->header('文章')
             ->description('详情')
             ->body($this->detail($id));
     }
@@ -90,7 +90,10 @@ class ArticleController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Article);
-        $grid->model()->where('status', 1);
+        $grid->model()->where('status', 1)->orderBy('id','desc');
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+        });
 
         //禁止导出
         $grid->disableExport();
@@ -99,16 +102,19 @@ class ArticleController extends Controller
             // 去掉默认的id过滤器
             $filter->disableIdFilter();
             // 在这里添加字段过滤器
+            $filter->equal('cateaory_id','分类')->select(Category::getCategory());
+
             $filter->like('title', '标题');
+
         });
 
         $grid->title('标题');
-        $grid->cateaory_id('分类')->select(Category::getCategory());
-        $grid->images('图片')->image('http://cqyl.test/uploads/',60,40);
+        $grid->cateaory_id('所属分类')->using(Category::getCategory());
+        $grid->images('图片')->image('http://cqyl.test/uploads/',60,30);
 
         $grid->sort('排序')->editable();
         $grid->click_number('浏览量');
-        $grid->status('状态')->using($this->_status);
+        // $grid->status('状态')->switch($this->status);
 
         $grid->created_at('添加时间');
 
@@ -152,6 +158,10 @@ class ArticleController extends Controller
     protected function form()
     {
         $form = new Form(new Article);
+        $form->tools(function (Form\Tools $tools) {
+            // 去掉`查看`按钮
+            $tools->disableView();
+        });
 
         $form->text('title', '标题')->rules('required',['required'=>'名称不能为空']);
         $form->select('cateaory_id', '分类')->options(

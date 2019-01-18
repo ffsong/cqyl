@@ -15,7 +15,7 @@
 
                             <div class="intro_L">{{ $articles['introduction'][0]['title'] }}</div>
 
-                            <div class="intro_R"><a href="{{ route('show',['category_id'=>8,'article_id'=>3]) }}">更多 >></a></div>
+                            <div class="intro_R"><a href="{{ route('show',['category_id'=>7,'article_id'=>3]) }}">更多 >></a></div>
 
                             <div class="clear"></div>
 
@@ -51,85 +51,35 @@
 
                                             <!-- 代码 开始 -->
 
-                                            <div id="fsD1" class="focus" >
-
-                                            {{-- 新闻图片--}}
-                                                @if(count($articles['news']) )
-                                                    @foreach($articles['news'] as $new)
-                                                        <div id="D1pic1" class="fPic">
-                                                            <div class="fcon" style="display: none;">
-                                                                <a target="_blank" href="{{ route('show',['category_id'=>1,'article_id'=>$new['id']]) }}">
-                                                                    <img src="{{ asset('/uploads/'.$new['images']) }}" style="opacity: 1; ">
-                                                                </a>
-                                                                <span class="shadow">
-                                                                    <a target="_blank" href="{{ route('show',['category_id'=>1,'article_id'=>$new['id']]) }}">{{str_limit($new['title'],'26','')}}</a>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-
-                                                <div class="fbg">
-
-                                                    <div class="D1fBt" id="D1fBt">
-
-                                                        @if(count($articles['news']) )
-                                                            @foreach($articles['news'] as $new)
-                                                                <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>*</i></a>
-                                                            @endforeach
-                                                        @endif
+<div id="lunbobox">
+<!--         <div id="toleft">
+        &lt;</div> -->
+            <div class="lunbo">
+            @if(count($articles['news']) )
+                @foreach($articles['news'] as $new)
+                <a target="_blank"
+                 href="{{ route('show',['category_id'=>1,'article_id'=>$new['id']]) }}">
+                 <img src="{{ asset('/uploads/'.$new['images']) }}">
+                 </a>
 
 
-                                                        {{--<a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>*</i></a>--}}
+                @endforeach
+            @endif
+                
+            </div>
+            <!-- <div id="toright">&gt;</div> -->
+            <ul>
+            @if(count($articles['news']) )
+                @foreach($articles['news'] as $new)
+                    <li></li>
+                @endforeach
+            @endif
+            </ul>
+            <span></span>
+    </div>
 
-                                                        {{--<a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>*</i></a>--}}
-                                                    </div>
-
-                                                </div>
-
-                                                <!--    <span class="prev"></span>
-
-                                                    <span class="next"></span>-->
-
-                                                </div>
-
-                                                                <script type="text/javascript">
-
-                                                                    Qfast.add('widgets', { path: "http://www.faaqjs.com/template/fanan/js/terminator2.2.min.js", type: "js", requires: ['fx'] });
-
-                                                                    Qfast(false, 'widgets', function () {
-
-                                                                        K.tabs({
-
-                                                                            id: 'fsD1',   //焦点图包裹id
-
-                                                                            conId: "D1pic1",  //** 大图域包裹id
-
-                                                                            tabId:"D1fBt",
-
-                                                                            tabTn:"a",
-
-                                                                            conCn: '.fcon', //** 大图域配置class
-
-                                                                            auto: 1,   //自动播放 1或0
-
-                                                                            effect: 'fade',   //效果配置
-
-                                                                            eType: 'click', //** 鼠标事件
-
-                                                                            pageBt:true,//是否有按钮切换页码
-
-                                                                            bns: ['.prev', '.next'],//** 前后按钮配置class
-
-                                                                            interval: 3000  //** 停顿时间
-
-                                                                        })
-
-                                                                    })
-
-                                                                </script>
-
-                                                                <!-- 代码 结束 --></div></td>
+<!-- 代码 结束 -->
+</div></td>
 
                                     <td align="left" valign="top"><div class="notice">
 
