@@ -207,3 +207,9 @@ a:hover { text-decoration:none; color:#6d6d6d;}
     opacity:0.4;
 }
 /*轮播*/
+
+
+/*banner*/
+.banner{ max-width: 100%}
+.logo{    max-width: 30%;margin-top: -10px; margin-left: 36px}
+

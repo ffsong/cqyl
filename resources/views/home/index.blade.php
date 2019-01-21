@@ -270,7 +270,7 @@
 
             <div class="w13">&nbsp;</div>
 
-            <div class="seven"><a href="http://www.faaqjs.com/member/member.php"><img src="{{ asset('picture/seven.jpg') }}" /></a></div>
+            <div class="seven"><a href="#"><img src="{{ asset('picture/seven.jpg') }}" /></a></div>
 
             <div class="w13">&nbsp;</div>
 
