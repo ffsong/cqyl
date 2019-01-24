@@ -34,10 +34,8 @@ class Category extends Model
 
         $re = self::all()->pluck('title', 'id')->toArray();
         return $re;
+        $cateaory = Cache::rememberForever('get_category',function (){
 
-        $cateaory = Cache::rememberForever('cateaory',function (){
-            $re = self::all()->pluck('title', 'id')->toArray();
-            return $re;
         });
         return $cateaory;
     }
@@ -49,18 +47,14 @@ class Category extends Model
     //获取首页分类
     public function getHomeCategory()
     {
+        $cateaory = Cache::rememberForever('get_home_category',function (){
+            $re['cateaory_top'] = $this->getTopNav();
+            $re['cateaory_right'] = $this->getRightNav();
 
-        $re['cateaory_top'] = $this->getTopNav();
-        $re['cateaory_right'] = $this->getRightNav();
+            return $re;
+        });
 
-        return $re;
-
-//        $cateaory = Cache::rememberForever('cateaory',function (){
-//            $re = self::where('pid',0)->select('id','title');
-//            return $re;
-//        });
-
-//        return $cateaory;
+        return $cateaory;
     }
 
     /*
@@ -101,8 +95,6 @@ class Category extends Model
             ->select('id','title')->orderBy('sort','desc')->get()
             ->toArray();
         }
-
-        // unset($cateaory_p[0]['pid']);
 
         array_unshift($cateaory_, $cateaory_p[0]);  
 

@@ -27,3 +27,6 @@ Route::group([
     $router->resource('links', LinkController::class);
 
 });
+
+//清除缓存
+Route::any('clearCache','App\Admin\Controllers\CommonController@clearCache')->name('clearCache');

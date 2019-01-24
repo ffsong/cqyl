@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Link extends Model
 {
@@ -10,7 +11,13 @@ class Link extends Model
 
     public function getLink()
     {
-        return $this->orderBy('sort','desc')->get();
+        $link = Cache::rememberForever('get_link',function (){
+
+            return $this->orderBy('sort','desc')->get();
+        });
+
+        return $link;
+
     }
 
 }

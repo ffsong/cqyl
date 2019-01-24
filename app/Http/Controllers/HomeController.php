@@ -18,11 +18,9 @@ class HomeController extends Controller
     {
         //nav 分类
        $categorys = $category->getHomeCategory();
-//        dd($categorys);exit;
 
        //新闻
         $articles = $article->getArticle();
-
 
         //友情链接
         $links = $link->getLink();

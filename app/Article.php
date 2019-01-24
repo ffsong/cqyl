@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Cache;
 class Article extends Model
 {
     public $table = 'articles';
@@ -19,11 +19,16 @@ class Article extends Model
      */
     public function getArticle(){
 
-        $article['news'] = $this->getNewList();
-        $article['notice'] = $this->getNoticeList();
-        $article['equipment'] = $this->getEquipmentList();
-        $article['introduction'] = $this->getIntroduction();
-        $article['contact'] = $this->getContact();
+        $article = Cache::rememberForever('get_article',function (){
+
+            $article['news'] = $this->getNewList();
+            $article['notice'] = $this->getNoticeList();
+            $article['equipment'] = $this->getEquipmentList();
+            $article['introduction'] = $this->getIntroduction();
+            $article['contact'] = $this->getContact();
+
+            return $article;
+        });
 
         return $article;
     }
