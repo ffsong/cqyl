@@ -99,7 +99,12 @@ class CategoryController extends Controller
         $grid = new Grid(new Category);
 
         $grid->actions(function ($actions) {
-//            $actions->disableDelete();
+
+            if ($actions->getKey() == 10 || $actions->getKey() == 1
+                ||$actions->getKey() == 2 || $actions->getKey() == 7 ) {
+                $actions->disableDelete();
+            }
+
             $actions->disableView();
         });
 
@@ -161,6 +166,7 @@ class CategoryController extends Controller
         $form->tools(function (Form\Tools $tools) {
             // 去掉`查看`按钮
             $tools->disableView();
+            $tools->disableDelete();
         });
 
         $id= 0;

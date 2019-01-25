@@ -93,6 +93,9 @@ class ArticleController extends Controller
         $grid->model()->where('status', 1)->orderBy('id','desc');
         $grid->actions(function ($actions) {
             $actions->disableView();
+            if ($actions->getKey() == 3 || $actions->getKey() == 4) {
+                $actions->disableDelete();
+            }
         });
 
         //禁止导出
@@ -110,7 +113,7 @@ class ArticleController extends Controller
 
         $grid->title('标题');
         $grid->cateaory_id('所属分类')->using(Category::getCategory());
-        $grid->images('图片')->image('http://cqyl.test/uploads/',60,30);
+        $grid->images('图片')->image('/uploads/',60,30);
 
         $grid->sort('排序')->editable();
         $grid->click_number('浏览量');
