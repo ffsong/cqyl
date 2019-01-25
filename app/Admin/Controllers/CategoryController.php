@@ -100,8 +100,10 @@ class CategoryController extends Controller
 
         $grid->actions(function ($actions) {
 
+            //首页分类不能删除
             if ($actions->getKey() == 10 || $actions->getKey() == 1
-                ||$actions->getKey() == 2 || $actions->getKey() == 7 ) {
+                ||$actions->getKey() == 2 || $actions->getKey() == 7 ||$actions->getKey() == 9 ) {
+
                 $actions->disableDelete();
             }
 

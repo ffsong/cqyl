@@ -62,7 +62,7 @@ class Category extends Model
      */
     public function getTopNav()
     {
-         return self::where('is_top',1)->select('id','title')->get()->toArray();
+         return self::where('is_top',1)->select('id','title')->orderBy('sort','desc')->get()->toArray();
     }
 
     /**
@@ -70,7 +70,7 @@ class Category extends Model
      */
     public function getRightNav()
     {
-        return self::where('is_right',1)->select('id','title')->get()->toArray();
+        return self::where('is_right',1)->select('id','title')->orderBy('sort','desc')->get()->toArray();
     }
 
      //当前分类和子分类组合和父分类列表
