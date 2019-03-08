@@ -1,0 +1,24 @@
+
+.width-100{
+    width: 100%;
+}
+
+.top-bg{
+    background: url("../images/top_bg.gif") no-repeat center center;
+    background-size:contain;
+}
+
+.nva-active{
+    background-color: #0247ac;
+}
+.nva-active a{
+    color: #fff !important;
+}
+
+/*.banner-indicators{*/
+    /*width: 1rem !important;*/
+    /*height: 1rem !important;*/
+    /*border-radius: 0.5rem;*/
+    /*color: #cce1f9;*/
+
+/*}*/

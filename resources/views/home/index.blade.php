@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title',$configs->website)
+@section('description',$configs->info)
 
 @section('content')
     <div class="five">

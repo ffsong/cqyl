@@ -30,3 +30,5 @@ Route::group([
 
 //清除缓存
 Route::any('clearCache','App\Admin\Controllers\CommonController@clearCache')->name('clearCache');
+
+Route::any('recovery','App\Admin\Controllers\ArticleRecoveryController@recovery')->name('recovery');

@@ -8,16 +8,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'LaraBBS')</title>
+    <title>@yield('title', '重庆悦灵安全技术咨询有限公司')</title>
+    <meta name="description" content="@yield('description', '重庆悦灵安全技术咨询有限公司')" />
+    <meta name="keywords" content="安全咨询,安全评价,环境评估,应急预案,消防技术咨询,重庆安全,重庆悦灵,重庆安全技术,重庆安全咨询">
 
     <link href="{{ asset('css/css.css')  }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/lrtk.css')  }}" rel="stylesheet" type="text/css" />
 
-    <!-- <script src="{{ asset('js/jquery1.42.min.js') }}" type="text/javascript"></script> -->
-    <!-- <script src="{{ asset('js/jquery.superslide.2.1.1.js') }}" type="text/javascript"></script> -->
-    <!-- <script src="{{ asset('js/sohuflash_1.js') }}" type="text/javascript"></script> -->
     <script src="{{ asset('js/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
-    <!-- <script src="{{ asset('js/koala.min.1.5.js') }}" type="text/javascript"></script> -->
     <script src="{{ asset('js/hits.js') }}" type="text/javascript"></script>
     <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 </head>

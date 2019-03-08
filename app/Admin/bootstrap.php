@@ -41,3 +41,6 @@ Admin::navbar(function (\Encore\Admin\Widgets\Navbar $navbar) {
     );
 
 });
+
+//回收站文章恢复 的js
+Admin::js('js/news.js');

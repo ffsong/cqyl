@@ -10,6 +10,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class ArticleRecoveryController extends Controller
 {
@@ -110,10 +111,13 @@ class ArticleRecoveryController extends Controller
 //        $grid->introduction('简介');
         $grid->sort('排序')->editable();
         $grid->click_number('浏览量');
-        $grid->status('状态')->using($this->_status);
+//        $grid->status('状态')->using($this->_status);
 
         $grid->created_at('添加时间');
 
+        $grid->status('恢复')->display(function ($value) {
+            return "<a class='btn btn-sm btn-primary grid-is-status' id='{$this->id}' title='{$value}'><i class='fa '></i><span class='hidden-xs'>恢复</span></a>";
+        });
         return $grid;
     }
 
@@ -175,4 +179,17 @@ class ArticleRecoveryController extends Controller
 
         return $form;
     }
+
+
+    //回收站内容恢复
+    public function recovery(Request $request)
+    {
+        $id = $request->id;
+
+        $re = Article::where('id',$id)->update(['status'=>1]);
+        if($re) return json_encode(['code'=>200,'msg'=>'修改成功','data'=>[]]);
+
+        return json_encode(['code'=>400,'msg'=>'修改失败','data'=>[]]);
+    }
+
 }

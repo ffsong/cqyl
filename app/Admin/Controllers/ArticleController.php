@@ -182,4 +182,13 @@ class ArticleController extends Controller
 
         return $form;
     }
+
+
+
+    //重写删除
+    public function destroy($id)
+    {
+        Article::where('id',$id)->update(['status'=>2]);
+    }
+
 }
