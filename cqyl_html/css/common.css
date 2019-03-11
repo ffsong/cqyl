@@ -2,9 +2,8 @@
 .width-100{
     width: 100%;
 }
-
 .top-bg{
-    background: url("../images/top_bg.gif") no-repeat center center;
+    background: url("../images/top_bg.jpg") no-repeat center center;
     background-size:contain;
 }
 
@@ -13,6 +12,57 @@
 }
 .nva-active a{
     color: #fff !important;
+}
+
+.content-font-size{
+    font-size: 0.88rem;
+    line-height: 2.4rem;
+    text-indent: 1.9rem;
+    color: #484848;
+}
+
+.title-top-boder{
+    font-size: 1.2rem;
+    border-top: 3px solid #0247ac;
+    font-weight: bold;
+}
+.small-color{
+    color: #a6a6a6;
+}
+
+.more{
+    color: #484848;
+    border: 1px solid #000;
+}
+.more:hover{
+    color: #484848;
+    border: 1px solid #000;
+}
+
+.more1-lg{
+    position: absolute;
+    bottom: 0;
+}
+
+.customer-text{
+    width: 255px;
+    height: 100%;
+    background-color: #7b7b7b;
+    z-index: 1;
+    opacity:0.3;
+    color: #fff;
+    position: absolute;
+    top: 0;
+}
+.customer-text .city,.title{
+    position: relative;
+    font-size: 1.4rem;
+    z-index: 2;
+}
+.customer-text .content{
+    position: relative;
+    font-size: 0.85rem;
+    z-index: 2;
 }
 
 /*.banner-indicators{*/
