@@ -44,31 +44,38 @@
     bottom: 0;
 }
 
+.customer{
+    margin:0;
+}
+
+.customer-content{
+    margin-right: 4%;
+}
+
 .customer-text{
-    width: 255px;
+    width: 100%;
     height: 100%;
     background-color: #7b7b7b;
-    z-index: 1;
-    opacity:0.3;
+    background-color:rgba(0,0,0,0.2);
     color: #fff;
     position: absolute;
     top: 0;
 }
 .customer-text .city,.title{
-    position: relative;
     font-size: 1.4rem;
-    z-index: 2;
 }
 .customer-text .content{
-    position: relative;
     font-size: 0.85rem;
-    z-index: 2;
 }
 
-/*.banner-indicators{*/
-    /*width: 1rem !important;*/
-    /*height: 1rem !important;*/
-    /*border-radius: 0.5rem;*/
-    /*color: #cce1f9;*/
-
-/*}*/
+.card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 4;
+    }
+    @include media-breakpoint-only(md) {
+      column-count: 2;
+    }
+    @include media-breakpoint-only(xs) {
+        column-count: 1;
+      }
+  }
