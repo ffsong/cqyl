@@ -1,0 +1,261 @@
+body{
+    min-width: 320px;
+    font-size: 0.8rem;
+}
+
+.btn{
+    font-size: 0.8rem;
+}
+
+.width-100{
+    width: 100%;
+}
+/*重写圆角*/
+.list-group-item:first-child{
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+}
+
+.list-group-item:last-child {
+
+     border-bottom-right-radius: 0rem;
+     border-bottom-left-radius: 0rem;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #0247ac;
+}
+
+/*页码*/
+.page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+}
+/*页码*/
+
+
+/*重写圆角*/
+
+.top-bg{
+    background: url("../images/top_bg.jpg") no-repeat center center;
+    background-size:contain;
+}
+
+.nva-active{
+    background-color: #0247ac;
+}
+.nva-active a{
+    color: #fff !important;
+}
+
+.content-font-size{
+    font-size: 0.88rem;
+    line-height: 2.4rem;
+    text-indent: 1.9rem;
+    color: #484848;
+}
+
+.title-top-boder{
+    font-size: 1.2rem;
+    border-top: 3px solid #0247ac;
+    font-weight: bold;
+}
+.small-color{
+    color: #a6a6a6;
+}
+
+.more{
+    color: #484848;
+    border: 1px solid #000;
+}
+.more:hover{
+    color: #484848;
+    border: 1px solid #000;
+}
+
+.more1-lg{
+    position: absolute;
+    bottom: 0;
+}
+
+.customer{
+    margin:0;
+}
+
+.customer-content{
+    margin-right: 4%;
+}
+
+.customer-text{
+    width: 100%;
+    height: 100%;
+    display: none;
+    text-align: center;
+    background-color: #7b7b7b;
+    background-color:rgba(0,0,0,0.1);
+    color: #fff;
+    position: absolute;
+    top: 0;
+}
+.customer-text .city,.title{
+    font-size: 1.4rem;
+}
+.customer-text .content{
+    font-size: 0.85rem;
+}
+
+.customer-text .more{
+    color: #fff;
+    border: 1px solid #fff;
+}
+.customer-text .more:hover{
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: #7b7b7b;
+    background-color:rgba(0,0,0,0.1);
+}
+
+.home-customer .card{
+    min-width: 255px;
+    max-width: 255px;
+    border:none;
+}
+.home-customer .card:hover .customer-text{
+    display: inline-block;
+}
+
+.news-list{
+    font-size: 0.85rem;
+    color: #232323;
+    background-color: #eee;
+    border: 0;
+}
+.news-list:hover{
+    color: #fff;
+    background-color: #0247ac;
+}
+
+.nav-item .news-list{
+    padding: 0.8rem 0;
+}
+
+footer{
+    background-color: #000;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+
+/*内页*/
+.breadcrumb-bg{
+    background-color: #eee;
+}
+
+.breadcrumb-bg ol{
+    padding-left: 0;
+}
+.breadcrumb-text li a{
+    color: #484848;
+}
+
+.breadcrumb-text li:last-child{
+    color: #989898;
+}
+
+.breadcrumb-item+.breadcrumb-item::before{
+    content: '>';
+}
+
+.about-content{
+    width: 93%;
+    margin: auto;
+}
+
+.pagination{
+    font-size: 0.8rem;
+}
+.pag-big{
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+}
+.page-item{
+    color: #484848;
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+    margin-left: 0.5rem;
+}
+.page-item a{
+    color: #484848;
+}
+
+.pagination .active a{
+    background-color: #eee !important;
+    border-color: #dcdcdc !important;
+    color: #484848 !important;
+}
+.pagination a:hover{
+    background-color: #eee !important;
+    border-color: #dcdcdc !important;
+    color: #484848 !important;
+}
+.pagination. .disabled{
+    color: #989898;
+}
+
+/*典型客户*/
+.customer-cards .img-fluid{
+    /*width: 90%;*/
+}
+.customer-cards .customer-text{
+    /*width: 90%;*/
+}
+
+/*新闻中心*/
+.new-category a{
+    width: 80%;
+    background-color: #F5F5F5;
+    color: #232323;
+}
+.new-category .active{
+    background-color: #0247ac;
+    color: #fff;
+}
+.new-category a:hover{
+    background-color: #0247ac;
+    color: #fff;
+}
+.new-list{
+    background-color: #f5f5f5;
+}
+.new-list .list-group a{
+    background-color: #fff !important;
+    color: #484848 !important;
+    font-size: 0.85rem;
+    border-color: #eee !important;
+}
+.new-list .list-group a:hover{
+    color: #989898 !important;
+}
+
+/*小屏新闻中心*/
+.new-list-md {
+
+}
+
+.new-list-md .loading{
+    font-size: 0.8rem;
+    color: #484848;
+}
+
+
+
+
+
+
