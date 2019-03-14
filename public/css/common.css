@@ -53,6 +53,9 @@ body{
 .nva-active a{
     color: #fff !important;
 }
+.nva-color{
+    color: #484848 !important;
+}
 
 .content-font-size{
     font-size: 0.88rem;
@@ -60,6 +63,7 @@ body{
     text-indent: 1.9rem;
     color: #484848;
 }
+
 
 .title-top-boder{
     font-size: 1.2rem;
@@ -193,6 +197,15 @@ footer{
 }
 .page-item a{
     color: #484848;
+}
+.page-item span{
+    color: #484848;
+}
+
+.pagination .active span{
+    background-color: #eee !important;
+    border-color: #dcdcdc !important;
+    color: #484848 !important;
 }
 
 .pagination .active a{

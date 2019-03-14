@@ -95,6 +95,7 @@ class ArticleRecoveryController extends Controller
         $grid->actions(function ($actions) {
 //            $actions->disableDelete();
             $actions->disableView();
+            $actions->disableEdit();
         });
 
         $grid->disableCreateButton();
@@ -107,10 +108,10 @@ class ArticleRecoveryController extends Controller
         $grid->disableExport();
 
         $grid->title('标题');
-        $grid->cateaory_id('分类')->select(Category::getCategory());
+//        $grid->cateaory_id('分类')->select(Category::getCategory());
 //        $grid->introduction('简介');
         $grid->sort('排序')->editable();
-        $grid->click_number('浏览量');
+//        $grid->click_number('浏览量');
 //        $grid->status('状态')->using($this->_status);
 
         $grid->created_at('添加时间');

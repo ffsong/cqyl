@@ -15,56 +15,48 @@ class Article extends Model
     }
 
     /*
-     * 获取首页文章
+     * 获取首页关于我们
      */
-    public function getArticle(){
+    public function getHomeArticle(){
 
         $article = Cache::rememberForever('get_article',function (){
 
-            $article['news'] = $this->getNewList();
-            $article['notice'] = $this->getNoticeList();
-            $article['equipment'] = $this->getEquipmentList();
-            $article['introduction'] = $this->getIntroduction();
-            $article['contact'] = $this->getContact();
+            $article['about'] = $this->getHomeAbout();
+            $article['customers'] = $this->getHomeCustomers();
 
             return $article;
         });
 
+
         return $article;
     }
-
-    //新闻列表
-    public function getNewList()
+    
+    //获取首页关于我们
+    public function getHomeAbout()
     {
-        return $this->where('cateaory_id',1)->select('id','title','images','created_at')->orderBy('sort','desc')->limit(6)->latest()->get();
+         return self::where('cateaory_id',1)->where('status',1)->limit(1)->orderBy('sort','desc')->get();
     }
 
-    //通知公告
-    public function getNoticeList(){
-        return $this->where('cateaory_id',2)->select('id','title','created_at')->orderBy('sort','desc')->limit(6)->latest()->get();
-    }
-
-    //设备展示
-    public function getEquipmentList(){
-        return $this->where('cateaory_id',9)->select('id','title','images')->orderBy('sort','desc')->limit(6)->latest()->get();
-    }
-
-    //公司简介
-    public function getIntroduction()
+    //获取首页典型客户
+    public function getHomeCustomers()
     {
-        return $this->where('id',3)->select('id','title','introduction')->get();
-
+        return self::where('cateaory_id',4)->where('status',1)->limit(4)->orderBy('sort','desc')->get();
     }
 
-    //联系方式
-    public function getContact()
+    /*
+     * 获取新闻列表
+     * $article_data 新闻分类的数据
+     * $page_num  每页数量
+     * */
+    public function getNewLists($article_data =[] ,$page_num = 3)
     {
-        return $this->where('id',4)->select('id','title','content')->get();
+        foreach ($article_data as $key => $article ){
+//            $article_data[$key]['list'] = $article_data[$key]->articles()->limit($page_num)->orderBy('sort','desc')->get();
+            $article_data[$key]['list'] = $article_data[$key]->articles()->orderBy('sort','desc')->paginate($page_num);
+        }
+
+        return $article_data;
     }
-
-
-
-
 
 
 

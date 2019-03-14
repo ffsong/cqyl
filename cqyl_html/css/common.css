@@ -210,12 +210,16 @@ footer{
 }
 
 /*典型客户*/
-.customer-cards .img-fluid{
+/*.customer-cards .img-fluid{*/
     /*width: 90%;*/
-}
-.customer-cards .customer-text{
+/*}*/
+/*.customer-cards .customer-text{*/
     /*width: 90%;*/
-}
+/*}*/
+
+/*.customer-cards .card:hover .customer-text{*/
+    /*display: inline-block;*/
+/*}*/
 
 /*新闻中心*/
 .new-category a{

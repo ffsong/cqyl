@@ -1,4 +1,7 @@
 <?php
+/*
+ * 典型客户
+ * */
 
 namespace App\Admin\Controllers;
 
@@ -12,7 +15,7 @@ use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use Illuminate\Support\Facades\Cache;
 
-class ArticleController extends Controller
+class ArticleCustomerController extends Controller
 {
     use HasResourceActions;
 
@@ -33,7 +36,7 @@ class ArticleController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('文章')
+            ->header('典型客户')
             ->description('列表')
             ->body($this->grid());
     }
@@ -48,7 +51,7 @@ class ArticleController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('文章')
+            ->header('典型客户')
             ->description('详情')
             ->body($this->detail($id));
     }
@@ -90,29 +93,27 @@ class ArticleController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Article);
-        $grid->model()->where('status', 1)->where('cateaory_id','<>',4)->orderBy('id','desc');
-        $grid->actions(function ($actions) {
-            $actions->disableView();
-//            if ($actions->getKey() == 3 || $actions->getKey() == 4) {
-//
-//            }
-        });
-
+        $grid->model()->where('status', 1)->where('cateaory_id',4)->orderBy('id','desc');
         //禁止导出
         $grid->disableExport();
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+        });
 
         $grid->filter(function($filter){
             // 去掉默认的id过滤器
             $filter->disableIdFilter();
             // 在这里添加字段过滤器
-            $filter->equal('cateaory_id','分类')->select(Category::getCategory());
+//            $filter->equal('cateaory_id','分类')->select(Category::getCategory());
 
-            $filter->like('title', '标题');
+            $filter->like('title', '地区');
+            $filter->like('introduction', '单位');
 
         });
 
-        $grid->title('标题');
-        $grid->cateaory_id('所属分类')->using(Category::getCategory());
+        $grid->title('地区');
+        $grid->introduction('单位');
+//        $grid->cateaory_id('所属分类')->using([4=>'']);
         $grid->images('图片')->image('/uploads/',60,30);
 
         $grid->sort('排序')->editable();
@@ -166,28 +167,26 @@ class ArticleController extends Controller
             $tools->disableView();
         });
 
-        $form->text('title', '标题')->rules('required',['required'=>'名称不能为空']);
-        $form->select('cateaory_id', '分类')->options(
-           Category::getCategory()
-        )->rules('required',['required'=>'名称不能为空']);
-//        $form->number('click_number', 'Click number');
-        $form->textarea('introduction', '描述');
+        $form->text('title', '地区')->rules('required',['required'=>'地区不能为空']);
+        $form->hidden('cateaory_id')->default(4);
+        $form->text('introduction', '单位')->rules('required',['required'=>'单位不能为空']);
+        $form->text('content', '服务内容')->rules('required',['required'=>'服务内容不能为空']);
         $form->image('images', '图片')->uniqueName();
-        $form->editor('content', '内容');
-        $form->file('enclosure','附件');
+
+//        $form->editor('content', '服务内容');
+//        $form->file('enclosure','附件');
         $form->number('sort', '排序')->default(100);
         $form->switch('status', '状态')->states(
             $this->status
         )->default(1);
 
         $form->saved(function (Form $form) {
-            if($form->model()->cateaory_id != 3 && $form->model()->cateaory_id != 5){
                 if (empty($form->model()->images)){
-                    $form->model()->images = 'default/about.jpg';
+                    $form->model()->images = 'default/customer_default.jpg';
                     $form->model()->save();
                 }
-            }
         });
+
 
         return $form;
     }
