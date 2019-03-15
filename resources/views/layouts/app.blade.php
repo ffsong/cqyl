@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--自定义css-->
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-    <title>@yield('title', '重庆悦灵安全技术咨询有限公司')</title>
-    <meta name="description" content="@yield('description', '重庆悦灵安全技术咨询有限公司')" />
+    <title>@yield('title', $common_data['config']['website'])</title>
+    <meta name="description" content="@yield('description', $common_data['config']['website'])" />
     <meta name="keywords" content="安全咨询,安全评价,环境评估,应急预案,消防技术咨询,重庆安全,重庆悦灵,重庆安全技术,重庆安全咨询">
 
 </head>
@@ -22,7 +22,7 @@
 @yield('main')
 <!--main-->
 
-@include('layouts._footer')
+@include('layouts._footer',['config'=>$common_data['config']])
 
 
 <!-- Optional JavaScript -->

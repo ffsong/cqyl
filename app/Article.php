@@ -50,11 +50,15 @@ class Article extends Model
      * */
     public function getNewLists($article_data =[] ,$page_num = 3)
     {
-        foreach ($article_data as $key => $article ){
-            $article_data[$key]['list'] = $article_data[$key]->articles()->orderBy('sort','desc')->paginate($page_num);
-        }
 
-        return $article_data;
+        $result = Cache::rememberForever('get_new_lists',function () use ($article_data,$page_num){
+            foreach ($article_data as $key => $article ){
+                $article_data[$key]['list'] = $article_data[$key]->articles()->orderBy('sort','desc')->paginate($page_num);
+            }
+            return $article_data;
+        });
+
+        return $result;
     }
 
 

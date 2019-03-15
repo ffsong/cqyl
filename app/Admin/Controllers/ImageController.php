@@ -81,13 +81,17 @@ class ImageController extends Controller
     {
         $grid = new Grid(new Image);
 
-//        $grid->id('Id');
-        $grid->name('名称');
+        $grid->actions(function ($actions) {
 
+            $actions->disableView();
+        });
+        //禁止导出
+        $grid->disableExport();
+
+        $grid->name('名称');
         $grid->url('路径')->image();
-//        $grid->type('Type');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->created_at('创建时间');
+        $grid->updated_at('更改时间');
 
         return $grid;
     }
@@ -120,6 +124,11 @@ class ImageController extends Controller
     protected function form()
     {
         $form = new Form(new Image);
+
+        $form->tools(function (Form\Tools $tools) {
+            // 去掉`查看`按钮
+            $tools->disableView();
+        });
 
         $form->text('name', '图片名称')->rules('required',['required'=>'必填内容不能为空']);
 

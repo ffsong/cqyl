@@ -1,9 +1,9 @@
 
 @extends('layouts.app')
 
-@section('title','业务范围 | 重庆悦灵安全技术咨询有限公司')
+@section('title','业务范围 | '.$common_data['config']['website'])
 
-@section('description','业务范围|重庆悦灵安全技术咨询有限公司')
+@section('description','业务范围 | '.$common_data['config']['website'])
 
 @section('main')
 

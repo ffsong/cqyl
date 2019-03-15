@@ -1,9 +1,9 @@
 
 @extends('layouts.app')
 
-@section('title','联系我们 | 重庆悦灵安全技术咨询有限公司')
+@section('title','联系我们 | '.$common_data['config']['website'])
 
-@section('description','联系我们 | 重庆悦灵安全技术咨询有限公司')
+@section('description','联系我们 | '.$common_data['config']['website'])
 
 @section('main')
 

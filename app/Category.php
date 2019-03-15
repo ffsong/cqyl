@@ -77,7 +77,11 @@ class Category extends Model
     //获取首页新闻
     public function getHomeNews()
     {
-        return self::where('pid',2)->with('articles')->get();
+        $result = Cache::rememberForever('get_home_news',function (){
+            return self::where('pid',2)->with('articles')->get();
+        });
+
+        return $result;
     }
 
 }

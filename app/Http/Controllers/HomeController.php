@@ -23,13 +23,16 @@ class HomeController extends Controller
         //分类
         $this->common_data['categorys'] = $category->getHomeCategory();
         //banner
-        $this->common_data['banners'] = Image::all();
+        $this->common_data['banners'] = Image::getBanner();
+        //配置文件
+        $this->common_data['config'] = Config::getConfig();
     }
 
     //首页
     public function index(Article $article ,Category $category)
     {
         $common_data = $this->common_data;
+
         $article_data = $article->getHomeArticle();
 
         $article_data['news'] = $category->getHomeNews();

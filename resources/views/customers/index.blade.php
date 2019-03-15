@@ -1,9 +1,9 @@
 
 @extends('layouts.app')
 
-@section('title','典型客户 | 重庆悦灵安全技术咨询有限公司')
+@section('title','典型客户 | '.$common_data['config']['website'])
 
-@section('description','典型客户|重庆悦灵安全技术咨询有限公司')
+@section('description','典型客户 | '.$common_data['config']['website'])
 
 @section('main')
 
@@ -15,7 +15,7 @@
             <div class="card-deck">
                 @foreach($customer_data as $customer)
                     <div class="card my-1 mx-auto">
-                        <img class="card-img-top img-fluid" src="./images/customer1.jpg" alt="Card image cap">
+                        <img class="card-img-top img-fluid" src="{{ asset('/uploads/'.$customer->images) }}" alt="Card image cap">
                         <div class="customer-text">
                             <p class="city" style="padding-top: 6rem">{{ $customer->title }}</p>
                             <p class="title" style="padding-bottom: 0.8rem">{{ $customer->introduction }}</p>
