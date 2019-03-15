@@ -10,15 +10,15 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-0 px-0">
         <a class="navbar-brand d-lg-none px-0" style="width: 54%" href="{{ route('/') }}">
-            <img class="img-fluid px-0" style="width: 100%" src="./images/w-logo_02.png" width="30" height="30" alt="">
+            <img class="img-fluid px-0" style="width: 100%" src="{{ asset('./images/w-logo_02.png') }}" width="30" height="30" alt="">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse width-100" id="navbarNav">
-            <div class="row width-100">
-                <ul class="navbar-nav width-100">
+            <div class="row width-100" style="margin: auto">
+                <ul class="navbar-nav width-100" >
 
                     <div class="col-sm-2">
                         <li class=" nav-item nva-{{ active_class(if_route('/')) }} ">

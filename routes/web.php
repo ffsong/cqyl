@@ -28,13 +28,8 @@ Route::get('/customers/{id?}', 'HomeController@customer')->name('customers');
 //联系我们
 Route::get('/contacts/{id?}', 'HomeController@contact')->name('contacts');
 
-
-
-//列表
-Route::get('/articles/{category_id}', 'ArticleController@index')->name('articles');
+//表单提交
+Route::post('/message', 'HomeController@message')->name('message');
 
 //文件下载
-Route::get('/down/{id}', 'ArticleController@down')->name('down');
-
-//详情
-Route::get('/articles/{category_id}/show/{article_id}','ArticleController@show')->name('show');
+Route::get('/down/{id}', 'HomeController@down')->name('down');

@@ -105,8 +105,10 @@
                         @if(isset($article_data['news'][0]))
                             @foreach($article_data['news'][0]['list'] as $key => $article)
                                 <div class="carousel-item @if($key == 0) active @endif">
-                                    <img class="d-block w-100" style="max-height: 340px;min-height: 340px"
-                                         src="/uploads/{{ $article['images'] }}" alt=" slide">
+                                    <a href="{{ route('news',['cateaory_id' => $article->cateaory_id, 'article_id' => $article->id]) }}">
+                                        <img class="d-block w-100" style="max-height: 340px;min-height: 340px"
+                                             src="/uploads/{{ $article['images'] }}" alt=" slide">
+                                    </a>
                                 </div>
                             @endforeach
                         @endif

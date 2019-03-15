@@ -51,7 +51,6 @@ class Article extends Model
     public function getNewLists($article_data =[] ,$page_num = 3)
     {
         foreach ($article_data as $key => $article ){
-//            $article_data[$key]['list'] = $article_data[$key]->articles()->limit($page_num)->orderBy('sort','desc')->get();
             $article_data[$key]['list'] = $article_data[$key]->articles()->orderBy('sort','desc')->paginate($page_num);
         }
 

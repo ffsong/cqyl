@@ -7,7 +7,7 @@
 
 @section('main')
 
-    @include('layouts._breadcrumb',['title'=>'新闻中心'])
+    @include('layouts._breadcrumb',['title'=>'公司新闻'])
 
     <!--content start-->
     <!--大屏内容 开始-->
@@ -73,8 +73,8 @@
                                         @foreach($articles['list'] as $article)
                                             <a href="{{ route('news',['cateaory_id' => $article->cateaory_id, 'article_id' => $article->id]) }}"
                                                class="list-group-item py-3 my-2 active">
-                                                {{ str_limit($article->title,'50','...')  }}
-                                                <span class="float-right"> {{ $article->created_at }} </span>
+                                                {{ str_limit($article->title,'32','...')  }}
+                                                {{--<span class="float-right"> {{ $article->created_at }} </span>--}}
                                             </a>
                                         @endforeach
                                     @else

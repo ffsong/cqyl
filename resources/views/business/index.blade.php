@@ -14,21 +14,23 @@
     <div class="container py-4 d-none d-lg-block" >
         <div class="row ">
             <div class="col-lg-3 new-category">
-                <nav class="nav text-center flex-column">
-                    <a class="nav-link my-1 py-3 active" href="#">政府及园区服务</a>
-                    <a class="nav-link my-1 py-3" href="#">工矿企业/交通运输企业等</a>
-                    <a class="nav-link my-1 py-3" href="#">学校/景区/商场/医院/养老院 等人员密集场所</a>
-                </nav>
+                <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    @foreach($business_data as $key=> $business)
+                        <a class="nav-link my-1 py-3 @if($key == 0) active @endif " id="v-pills-{{ $key }}-tab" data-toggle="pill"
+                           href="#v-pills-{{ $key }}" role="tab" aria-controls="v-pills-{{ $key }}"  aria-selected="true">
+                            {{ $business->title }}
+                        </a>
+                    @endforeach
+                </div>
             </div>
             <div class="col-lg-9 py-4 px-4 new-list">
-
-                1、安全风险辨识评估
-                2、应急资源管理
-                3、应急物资及设备规划
-                4、应急预案编制
-                5、应急演练策划与实施
-                6、事故应急处置专家
-
+                <div class="tab-content" id="v-pills-tabContent">
+                    @foreach($business_data as $key=> $business)
+                        <div class="tab-pane fade new-list @if($key == 0) show  active @endif s" id="v-pills-{{ $key }}"
+                             role="tabpanel"
+                             aria-labelledby="v-pills-{{ $key }}-tab">{!! $business->content !!}</div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
@@ -37,52 +39,27 @@
     <!--小屏内容-->
     <div class="container pt-3 pb-4 d-lg-none new-list-md">
         <div id="accordion">
-            <div class="card">
-                <div class="card-header" id="heading1">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link btn-xs btn-block" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                            政府及园区服务
-                        </button>
-                    </h5>
-                </div>
+            @foreach($business_data as $key=> $business)
+                <div class="card">
+                    <div class="card-header" id="heading1">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link btn-xs btn-block" style="color: #484848"  data-toggle="collapse"
+                                    data-target="#collapse{{ $key }}"
+                                    @if($key == 0) aria-expanded="true" @else aria-expanded="false" @endif
+                                    aria-controls="collapse{{ $key }}">
+                                {{ $business->title }}
+                            </button>
+                        </h5>
+                    </div>
 
-                <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-id="1" data-parent="#accordion">
-                    <div class="card-body">
-                        1、安全风险辨识评估 2、应急资源管理 3、应急物资及设备规划 4、应急预案编制 5、应急演练策划与实施 6、事故应急处置专家
+                    <div id="collapse{{ $key }}" class="collapse @if($key == 0) show  @endif " aria-labelledby="heading{{ $key }}"
+                         data-parent="#accordion">
+                        <div class="card-body">
+                            {!! $business->content !!}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="heading2">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link btn-xs btn-block" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                            工矿企业/交通运输企业等
-                        </button>
-                    </h5>
-                </div>
-
-                <div id="collapse2" class="collapse" aria-labelledby="heading2" data-id="1" data-parent="#accordion">
-                    <div class="card-body">
-                        1、安全风险辨识评估 2、应急资源管理 3、应急物资及设备规划 4、应急预案编制 5、应急演练策划与实施 6、事故应急处置专家
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header" id="heading3">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link btn-xs btn-block" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                            学校/景区/商场/医院/养老院 等人员密集场所
-                        </button>
-                    </h5>
-                </div>
-
-                <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordion">
-                    <div class="card-body">
-                        1、安全风险辨识评估 2、应急资源管理 3、应急物资及设备规划 4、应急预案编制 5、应急演练策划与实施 6、事故应急处置专家
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!--小屏内容-->

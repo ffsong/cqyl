@@ -267,6 +267,21 @@ footer{
     color: #484848;
 }
 
+/*新闻内页*/
+
+.new-show h4{
+    color: #484848;
+}
+.new-show .created_at{
+    font-size: 0.8rem;
+    color: #989898;
+}
+.new-show .new-content {
+    font-size: 0.8rem;
+    color: #3f3f3f;
+    line-height: 1.6rem;
+}
+
 
 
 
