@@ -9,7 +9,7 @@
 <!--nav start-->
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-0 px-0">
-        <a class="navbar-brand d-lg-none px-0" style="width: 54%" href="{{ route('/') }}">
+        <a class="navbar-brand d-lg-none px-0" style="width: 68%" href="{{ route('/') }}">
             <img class="img-fluid px-0" style="width: 100%" src="{{ asset('./images/w-logo_02.png') }}" width="30" height="30" alt="">
         </a>
 

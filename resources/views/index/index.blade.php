@@ -79,7 +79,7 @@
                                     @foreach($articles['list'] as $article)
                                         <a href="{{ route('news',['cateaory_id' => $article->cateaory_id, 'article_id' => $article->id]) }}" class="list-group-item list-group-item-action my-3 py-4 news-list">
                                             {{ str_limit($article->title,'50','...')  }}
-                                            <span class="float-right">[ {{ $article->created_at }} ]</span>
+                                            <span class="float-right d-none d-md-block">[ {{ $article->created_at }} ]</span>
                                         </a>
                                     @endforeach
                                 @endif

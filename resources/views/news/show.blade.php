@@ -17,7 +17,7 @@
 
     <!--content start-->
     <div class="container py-4  d-block" >
-        <div class="row col-11 mx-auto">
+        <div class="row mx-auto">
             <div class="w-100 new-show">
                 @if(!empty($new))
                 <h4 class="text-center">

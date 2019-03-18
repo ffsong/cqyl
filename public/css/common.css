@@ -176,10 +176,10 @@ footer{
     content: '>';
 }
 
-.about-content{
-    width: 93%;
-    margin: auto;
-}
+/*.about-content{*/
+    /*width: 93%;*/
+    /*margin: auto;*/
+/*}*/
 
 .pagination{
     font-size: 0.8rem;
