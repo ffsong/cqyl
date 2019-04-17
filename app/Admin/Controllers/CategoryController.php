@@ -110,10 +110,10 @@ class CategoryController extends Controller
 
         //禁止导出
         $grid->disableExport();
-        $grid->disableCreateButton(); //禁止添加
+//        $grid->disableCreateButton(); //禁止添加
 
         $grid->title('分类名称');
-//        $grid->pid('上级分类')->using(Category::getAll());
+        $grid->image('分类图片')->image('',60,60);
 //        $grid->sort('排序')->editable();
 //        $grid->is_top('首页置顶')->switch($this->is_top);
 //        $grid->is_right('首页侧栏')->switch($this->is_right);
@@ -165,16 +165,17 @@ class CategoryController extends Controller
             $tools->disableDelete();
         });
 
-//        $id= 0;
+        $id= 0;
         $param = request()->route()->parameters();
-        if($param)  $id= $param['category'];
+        if($param)  $id = $param['category'];
 
-        $form->text('title', '分类名称');
+        $form->text('title', '分类名称')->rules('required',['required'=>'必填内容不能为空']);
+        $form->image('image', '分类图片（图片比例:348 X 232）');
 
-//        $form->select('pid', '上级分类')->options(function () use ($id){
-//            return Category::getAll($id);
-//        }
-//        )->default(0);
+        $form->select('pid', '上级分类')->options(function () use ($id){
+            return Category::getAll($id);
+        }
+        )->default(0);
 //        $form->number('sort', '排序')->default(100);
 //        $form->switch('status', '状态')->states($this->is_top)->default(1);
 //        $form->switch('is_top', '置顶（nav是否展示在首页）')->states($this->is_top)->default(2);

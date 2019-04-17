@@ -1,9 +1,9 @@
 
 @extends('layouts.app')
 
-@section('title','联系我们 | '.$common_data['config']['website'])
+@section('title','联系我们-'.$common_data['config']['website'])
 
-@section('description','联系我们 | '.$common_data['config']['website'])
+@section('description','联系我们-'.$common_data['config']['website'])
 
 @section('main')
 
@@ -63,13 +63,59 @@
 
                 </div>
             </div>
-            <div class="col-lg-9 py-4 px-4 new-list">
+            <div class="col-lg-9 py-4 px-4">
 
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade
                      @empty ($errors->any()) show active @endempty" id="v-pills-home" role="tabpanel"
                          aria-labelledby="v-pills-home-tab">
                             {!! $contact_data->content !!}
+
+                        <div class="row">
+                            <!--地图 start-->
+                            <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=c36xsnTC0HTLcb9DNtpknAoSvGLbBS7h&s=1"></script>
+                            <script type="text/javascript" src="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+                            <link rel="stylesheet" href="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+
+
+                            <div id="allmap1" class="baidu-maps" style=" width: 100%;height: 300px"></div>
+
+                            <script type="text/javascript">
+                                // 百度地图API功能
+                                var map1 = new BMap.Map('allmap1');
+                                var poi1 = new BMap.Point(106.615322,29.654299);
+                                map1.centerAndZoom(poi1, 16);
+                                map1.enableScrollWheelZoom();
+
+                                var content1 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                                    '<img src="{{ asset('images/log.png') }}" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                                    '地址：{{ $common_data['config']['address'] }}<br/>电话：{{ $common_data['config']['phone'] }}<br/>简介：{{ $common_data['config']['website'] }}' +
+                                    '</div>';
+
+                                //创建检索信息窗口对象
+                                var searchInfoWindow1 = null;
+                                searchInfoWindow1 = new BMapLib.SearchInfoWindow(map1, content1, {
+                                    title  : "{{ $common_data['config']['website'] }}",      //标题
+                                    width  : 290,             //宽度
+                                    height : 105,              //高度
+                                    panel  : "panel",         //检索结果面板
+                                    enableAutoPan : true,     //自动平移
+                                    searchTypes   :[
+                                        BMAPLIB_TAB_SEARCH,   //周边检索
+                                        BMAPLIB_TAB_TO_HERE,  //到这里去
+                                        BMAPLIB_TAB_FROM_HERE //从这里出发
+                                    ]
+                                });
+                                var marker1 = new BMap.Marker(poi1); //创建marker对象
+                                marker1.enableDragging(); //marker可拖拽
+                                marker1.addEventListener("click", function(e){
+                                    searchInfoWindow1.open(marker1);
+                                })
+                                map1.addOverlay(marker1); //在地图中添加marker
+                            </script>
+
+                            <!--地图 end-->
+                        </div>
                     </div>
 
                     <div class="tab-pane fade @if ($errors->any()) show active @endif" id="v-pills-profile" role="tabpanel"
@@ -143,6 +189,49 @@
                 <div id="collapse1" class="collapse show"  aria-labelledby="heading1" data-id="1" data-parent="#accordion">
                     <div class="card-body">
                         {!! $contact_data->content !!}
+                        <div class="row">
+                            <!--地图 start-->
+                            <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=c36xsnTC0HTLcb9DNtpknAoSvGLbBS7h&s=1"></script>
+                            <script type="text/javascript" src="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+                            <link rel="stylesheet" href="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+
+                            <div id="allmap2" class="baidu-maps" style=" width: 100%;height: 300px"></div>
+
+                            <script type="text/javascript">
+                                // 百度地图API功能
+                                var map = new BMap.Map('allmap2');
+                                var poi = new BMap.Point(106.615322,29.654299);
+                                map.centerAndZoom(poi, 16);
+                                map.enableScrollWheelZoom();
+
+                                var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                                    '<img src="{{ asset('images/log.png') }}" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                                    '地址：{{ $common_data['config']['address'] }}<br/>电话：{{ $common_data['config']['phone'] }}<br/>简介：{{ $common_data['config']['website'] }}' +
+                                    '</div>';
+
+                                //创建检索信息窗口对象
+                                var searchInfoWindow = null;
+                                searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+                                    title  : "{{ $common_data['config']['website'] }}",      //标题
+                                    width  : 290,             //宽度
+                                    height : 105,              //高度
+                                    panel  : "panel",         //检索结果面板
+                                    enableAutoPan : true,     //自动平移
+                                    searchTypes   :[
+                                        BMAPLIB_TAB_SEARCH,   //周边检索
+                                        BMAPLIB_TAB_TO_HERE,  //到这里去
+                                        BMAPLIB_TAB_FROM_HERE //从这里出发
+                                    ]
+                                });
+                                var marker = new BMap.Marker(poi); //创建marker对象
+                                marker.enableDragging(); //marker可拖拽
+                                marker.addEventListener("click", function(e){
+                                    searchInfoWindow.open(marker);
+                                })
+                                map.addOverlay(marker); //在地图中添加marker
+                            </script>
+                            <!--地图 end-->
+                        </div>
                     </div>
                 </div>
             </div>

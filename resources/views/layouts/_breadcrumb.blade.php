@@ -15,8 +15,6 @@
                             {{ $nav['category_title'] }}
                         </a>
                     </li>
-                    {{--<li class="breadcrumb-item active" aria-current="page">{{ $nav['article_title'] }}</li>--}}
-
                 @else
                     <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
                 @endif

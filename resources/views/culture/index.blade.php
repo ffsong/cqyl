@@ -1,0 +1,66 @@
+
+@extends('layouts.app')
+
+@section('title','企业文化-'.$common_data['config']['website'])
+
+@section('description','企业文化-'.$common_data['config']['website'])
+
+@section('main')
+
+    @include('layouts._breadcrumb',['title'=>'企业文化'])
+
+    <!--content start-->
+    <div class="container my-4 text-center" >
+
+        {{--企业宗旨--}}
+
+        <div class="text-center">
+            <h3 class="mx-auto">企业宗旨</h3>
+            <div class="mt-3">
+                {!! $culture['ep']['content'] !!}
+            </div>
+        </div>
+        {{--企业宗旨--}}
+
+        <hr/>
+
+        {{--职工园地--}}
+        <div class="py-5 text-center">
+            <h3 class="mx-auto">职工园地</h3>
+            <div class="text-center">
+                <div class="row">
+                    @foreach($culture['sg'] as $value)
+                        <div class="col-6 col-md-4 px-1 my-3">
+                            <img src="{{ asset('uploads/'.$value['image']) }}" alt="{{ $value['title'] }}" class="img-fluid" />
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        {{--职工园地--}}
+
+        <hr/>
+
+        {{--职工风采--}}
+        <div class=" pb-5 text-center" id="foo" >
+            <h3 class="mx-auto">员工风采</h3>
+            <div class="text-center">
+                <div class="row">
+                    @foreach($culture['ed'] as $value)
+                        <div class="col-6 col-md-4 px-1 my-3">
+                            <img src="{{ asset('uploads/'.$value['image']) }}" title="{{ $value['title'] }}" alt="{{ $value['title'] }}" class="img-fluid" />
+                        </div>
+                    @endforeach
+                </div>
+                <div class="row mt-3">
+                    <nav class="mx-auto" aria-label="Page navigation example">
+                        {{ $culture['ed']->fragment('foo')->links() }}
+                    </nav>
+                </div>
+            </div>
+        </div>
+        {{--职工风采--}}
+    </div>
+    <!--content end-->
+
+@endsection

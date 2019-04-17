@@ -1,8 +1,15 @@
+html{ min-height: 100%; position: relative }
 body{
     min-width: 320px;
     font-size: 0.8rem;
+    padding-bottom: 140px;
 }
-
+li{
+    list-style-type: none !important;
+}
+a:hover{
+    text-decoration:none
+}
 .btn{
     font-size: 0.8rem;
 }
@@ -10,16 +17,32 @@ body{
 .width-100{
     width: 100%;
 }
-/*重写圆角*/
-.list-group-item:first-child{
-    border-top-left-radius: 0rem;
-    border-top-right-radius: 0rem;
+
+
+/*首页按钮平均分布*/
+.col-xs-7ths, .col-sm-7ths, .col-md-7ths, .col-lg-7ths {
+    position: relative;
+    min-height: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
-
-.list-group-item:last-child {
-
-     border-bottom-right-radius: 0rem;
-     border-bottom-left-radius: 0rem;
+@media ( min-width : 768px) {
+    .col-sm-7ths {
+        width: 14.2%;
+        float: left;
+    }
+}
+@media ( min-width : 992px) {
+    .col-md-7ths {
+        width: 14.2%;
+        float: left;
+    }
+}
+@media ( min-width : 1200px) {
+    .col-lg-7ths {
+        width: 14.2%;
+        float: left;
+    }
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
@@ -38,13 +61,17 @@ body{
     border-bottom-right-radius: 0rem;
 }
 /*页码*/
-
-
-/*重写圆角*/
+/*重写圆角 end*/
 
 .top-bg{
-    background: url("../images/top_bg.jpg") no-repeat center center;
+    background: url("../images/top_bg.jpg") center center;
     background-size:contain;
+}
+
+.top-bg-img{
+    background: url("../images/top_content.png") center no-repeat;
+    height: 100px;
+    background-size: 100% auto;
 }
 
 .nva-active{
@@ -53,8 +80,46 @@ body{
 .nva-active a{
     color: #fff !important;
 }
-.nva-color{
+.nav-color{
     color: #484848 !important;
+}
+
+.dropdown .dropdown-menu{
+    width: 100%;
+    min-width: 100%;
+    font-size: 0.8rem;
+    text-align: center;
+    border-radius:0px;
+    margin: 0 0 2px 0;
+    padding: 0px;
+    border: 0px;
+    background-color: #fff;
+}
+
+@media (min-width: 992px) {
+    .dropdown:hover .dropdown-menu{
+        display: block;
+    }
+    .dropdown:hover .dropdown-menu{
+        display: block;
+    }
+}
+
+.dropdown:hover .dropdown-menu a{
+    color: #484848 !important;
+}
+
+.dropdown .dropdown-menu a{
+    padding: 8px 0px;
+}
+
+.dropdown .dropdown-menu a:hover{
+    color: #fff !important;
+    background-color: #0247ac;
+}
+
+.navbar-nav .dropdown-menu{
+    position: relative;
 }
 
 .content-font-size{
@@ -64,11 +129,11 @@ body{
     color: #484848;
 }
 
-
 .title-top-boder{
     font-size: 1.2rem;
     border-top: 3px solid #0247ac;
     font-weight: bold;
+    padding-top: 1px;
 }
 .small-color{
     color: #a6a6a6;
@@ -97,8 +162,8 @@ body{
 }
 
 .customer-text{
-    width: 100%;
     height: 100%;
+    padding-right: 15px;
     display: none;
     text-align: center;
     background-color: #7b7b7b;
@@ -108,7 +173,7 @@ body{
     top: 0;
 }
 .customer-text .city,.title{
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 .customer-text .content{
     font-size: 0.85rem;
@@ -117,6 +182,7 @@ body{
 .customer-text .more{
     color: #fff;
     border: 1px solid #fff;
+    font-size: 0.8rem;
 }
 .customer-text .more:hover{
     color: #fff;
@@ -126,18 +192,24 @@ body{
 }
 
 .home-customer .card{
-    min-width: 255px;
-    max-width: 255px;
     border:none;
 }
 .home-customer .card:hover .customer-text{
     display: inline-block;
 }
+.achievement .achievement-content:hover .customer-text{
+    display: inline-block;
+}
+
+
+.home-new-lists{
+    border: none;
+}
 
 .news-list{
     font-size: 0.85rem;
     color: #232323;
-    background-color: #eee;
+    background-color: #fff;
     border: 0;
 }
 .news-list:hover{
@@ -150,9 +222,46 @@ body{
 }
 
 footer{
+    width: 100%;
     background-color: #000;
     font-size: 0.8rem;
     color: #fff;
+    position: absolute;
+    bottom: 0;
+    height: 140px;
+}
+
+/*首页-业务范围*/
+
+.home-business{
+    text-decoration: none;
+    color:inherit;
+    text-align: center;
+}
+.home-business .card-title{
+    margin-bottom: 0px;
+}
+.home-business:hover{
+    color: #989898;
+}
+
+/*首页-我们的服务*/
+
+.home-achievement{
+    text-align: center;
+}
+
+.home-achievement .row a:hover h6, .home-achievement .row a:hover .introduction{
+    color: #989898 !important;
+}
+
+.home-achievement .title{
+    color: #484848;
+}
+.home-achievement .introduction{
+    font-size: 12px;
+    color: #484848;
+    padding-bottom: 6px;
 }
 
 
@@ -176,17 +285,11 @@ footer{
     content: '>';
 }
 
-/*.about-content{*/
-    /*width: 93%;*/
-    /*margin: auto;*/
-/*}*/
-
 .pagination{
     font-size: 0.8rem;
 }
 .pag-big{
-    position: absolute;
-    bottom: 0px;
+    position: relative;
     left: 50%;
 }
 .page-item{
@@ -222,17 +325,9 @@ footer{
     color: #989898;
 }
 
-/*典型客户*/
-.customer-cards .img-fluid{
-    /*width: 90%;*/
-}
-.customer-cards .customer-text{
-    /*width: 90%;*/
-}
 
 /*新闻中心*/
 .new-category a{
-    width: 80%;
     background-color: #F5F5F5;
     color: #232323;
 }
@@ -256,18 +351,14 @@ footer{
 .new-list .list-group a:hover{
     color: #989898 !important;
 }
-
-/*小屏新闻中心*/
-.new-list-md {
-
+.news-list-text{
+    color: #484848 !important;
+}
+.news-list-text:hover{
+    color: #666666 !important;
 }
 
-.new-list-md .loading{
-    font-size: 0.8rem;
-    color: #484848;
-}
-
-/*新闻内页*/
+/*新闻内页 start*/
 
 .new-show h4{
     color: #484848;
@@ -278,8 +369,29 @@ footer{
 }
 .new-show .new-content {
     font-size: 0.8rem;
-    color: #3f3f3f;
     line-height: 1.6rem;
+    color: #484848;
+    text-indent:2em
+}
+.new-show .new-content img{
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/*行业案例列表页*/
+
+.customer-list h6, .customer-list p{
+    color: #484848;
+}
+.customer-list a:hover h6,.customer-list a:hover p {
+    color: #989898;
+}
+
+
+/*地图*/
+
+.baidu-maps label {
+    max-width: none;
 }
 
 

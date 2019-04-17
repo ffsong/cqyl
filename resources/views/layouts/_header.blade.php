@@ -1,15 +1,15 @@
 <div class="img-responsive top-bg ">
     <div class="container">
-        <div class="row">
-            <img class="img-fluid d-none d-lg-block" src="{{asset('./images/top_content.png')}}">
+        <div class="row top-bg-img d-none d-md-block">
+            {{--<img class="img-fluid d-none d-md-block" src="{{asset('./images/top_content.png')}}">--}}
         </div>
     </div>
 </div>
 
 <!--nav start-->
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-0 px-0">
-        <a class="navbar-brand d-lg-none px-0" style="width: 68%" href="{{ route('/') }}">
+<div class="container" style="padding-left: 0px; padding-right: 0px">
+    <nav class="navbar navbar-expand-md navbar-light bg-white py-0 px-0">
+        <a class="navbar-brand d-md-none px-0" style="width: 68%" href="{{ route('/') }}">
             <img class="img-fluid px-0" style="width: 100%" src="{{ asset('./images/w-logo_02.png') }}" width="30" height="30" alt="">
         </a>
 
@@ -20,36 +20,94 @@
             <div class="row width-100" style="margin: auto">
                 <ul class="navbar-nav width-100" >
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-7ths">
                         <li class=" nav-item nva-{{ active_class(if_route('/')) }} ">
-                            <a class="nav-link text-center nva-color" href="{{ route('/') }}">首页</a>
+                            <a class="nav-link text-center nav-color" href="{{ route('/') }}">首页</a>
                         </li>
                     </div>
 
-                    <div class="col-sm-2">
-                        <li class=" nav-item nva-{{ active_class(if_route('abouts')) }} ">
-                            <a class="nav-link text-center nva-color" href="{{ route('abouts') }}">{{ $categorys[0]['title'] }}</a>
+                    <div class="col-sm-7ths">
+
+                        <li class="nav-item dropdown nva-{{ active_class((if_route('abouts'))) }}">
+
+                            <a class="nav-link text-center nva-color d-block d-lg-none" href="{{ route('abouts',['id'=>$categorys[0]['id']]) }}">
+                                {{ $categorys[0]['title'] }}
+                            </a>
+
+                            <a class="nav-link text-center nav-color d-none d-lg-block" href="#" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ $categorys[0]['title'] }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                @foreach($categorys[0]['list_title'] as $article)
+                                    <a class="dropdown-item" href="{{ route('abouts',['id'=>$article->id]) }}">{{ $article->title }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+
+                    </div>
+
+                    <div class="col-sm-7ths">
+                        <li class=" nav-item dropdown nva-{{ active_class(if_route('news')) }}">
+                            <a class="nav-link text-center nav-color d-block d-lg-none" href="{{ route('news',['category'=>6]) }}">
+                                {{ $categorys[1]['title'] }}
+                            </a>
+
+                            <a class="nav-link text-center nav-color d-none d-lg-block" href="#" id="navbarDropdownMenuLink1"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ $categorys[1]['title'] }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                                @foreach($categorys[1]['list_title'] as $article)
+                                    <a class="dropdown-item" href="{{ route('news',['category'=>$article->id]) }}">{{ $article->title }}</a>
+                                @endforeach
+                            </div>
+
                         </li>
                     </div>
 
-                    <div class="col-sm-2">
-                        <li class=" nav-item nva-{{ active_class(if_route('news')) }}">
-                            <a class="nav-link text-center nva-color" href="{{ route('news',['category'=>6]) }}">{{ $categorys[1]['title'] }}</a>
+                    <div class="col-sm-7ths">
+                        <li class=" nav-item dropdown nva-{{ active_class(if_route('business')) }}">
+
+                            <a class="nav-link text-center nav-color d-block d-lg-none" href="{{ route('business',['id'=>9]) }}">
+                                {{ $categorys[2]['title'] }}
+                            </a>
+
+                            <a class="nav-link text-center nav-color d-none d-lg-block " href="#" id="navbarDropdownMenuLink2"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ $categorys[2]['title'] }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                                @foreach($categorys[2]['list_title'] as $article)
+                                    <a class="dropdown-item" href="{{ route('business',['id'=>$article->id]) }}">
+                                        {{ str_limit($article->title,'16','等') }}
+                                    </a>
+                                @endforeach
+                            </div>
+
                         </li>
                     </div>
-                    <div class="col-sm-2">
-                        <li class=" nav-item nva-{{ active_class(if_route('business')) }}">
-                            <a class="nav-link text-center nva-color" href="{{ route('business') }}">{{ $categorys[2]['title'] }}</a>
+
+                    <div class="col-sm-7ths">
+                        <li class=" nav-item nva-{{ active_class(if_route('culture')) }}">
+                            <a class="nav-link text-center nav-color" href="{{ route('culture') }}">
+                                {{ $categorys[5]['title'] }}
+                            </a>
                         </li>
                     </div>
-                    <div class="col-sm-2">
-                        <li class=" nav-item nva-{{ active_class(if_route('customers')) }}">
-                            <a class="nav-link text-center nva-color" href="{{ route('customers') }}">{{ $categorys[3]['title'] }}</a>
+
+                    <div class="col-sm-7ths">
+                        <li class=" nav-item nva-{{ active_class(if_route('industry')) }}">
+                            <a class="nav-link text-center nav-color" href="{{ route('industry') }}">
+                                {{ $categorys[3]['title'] }}
+                            </a>
                         </li>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-7ths">
                         <li class=" nav-item nva-{{ active_class(if_route('contacts')) }}">
-                            <a class="nav-link text-center nva-color" href="{{ route('contacts') }}">{{ $categorys[4]['title'] }}</a>
+                            <a class="nav-link text-center nav-color" href="{{ route('contacts') }}">
+                                {{ $categorys[4]['title'] }}
+                            </a>
                         </li>
                     </div>
 
@@ -59,29 +117,3 @@
     </nav>
 </div>
 <!--nav end-->
-
-<!--banner start-->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        @foreach($banners as $key=> $banner)
-            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class="@if($key == 0)active  @endif banner-indicators"></li>
-        @endforeach
-    </ol>
-    <div class="carousel-inner">
-
-        @foreach($banners as $key=> $banner)
-            <div class="carousel-item @if($key == 0) active  @endif">
-                <img class="d-block w-100" src="{{ asset('/uploads/'.$banner->url) }}" alt="First slide">
-            </div>
-        @endforeach
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-<!--banner end-->

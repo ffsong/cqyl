@@ -1,28 +1,36 @@
 
 @extends('layouts.app')
 
-@section('title','典型客户 | '.$common_data['config']['website'])
+@section('title','行业案例-'.$common_data['config']['website'])
 
-@section('description','典型客户 | '.$common_data['config']['website'])
+@section('description','行业案例-'.$common_data['config']['website'])
 
 @section('main')
 
-    @include('layouts._breadcrumb',['title'=>'典型客户'])
+    @include('layouts._breadcrumb',['title'=>'行业案例'])
 
     <!--content start-->
     <div class="home-customer" >
         <div class="container py-5" >
             <div class="card-deck">
-                @foreach($customer_data as $customer)
-                    <div class="card my-1 mx-auto">
-                        <img class="card-img-top img-fluid" src="{{ asset('/uploads/'.$customer->images) }}" alt="Card image cap">
-                        <div class="customer-text">
-                            <p class="city" style="padding-top: 6rem">{{ $customer->title }}</p>
-                            <p class="title" style="padding-bottom: 0.8rem">{{ $customer->introduction }}</p>
-                            <p class="content">服务内容：{{ $customer->content }}</p>
+                <div class="row customer-list">
+
+                    @foreach($customer_data as $value)
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <a href="{{ route('industry',['id'=>$value->id]) }}" >
+                                <div>
+                                    <img src="{{ asset('uploads/'.$value->images) }}" alt="{{ $value->title }}" class="img-fluid">
+                                </div>
+                                <div>
+                                    <div class="pt-2 pb-1">
+                                        <h6 class="text-center">{{ $value->title }}</h6>
+                                    </div>
+                                    <p class="text-center" >{{ $value->introduction }}</p>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
 
             <div class="row mt-3">

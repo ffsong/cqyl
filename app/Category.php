@@ -41,17 +41,11 @@ class Category extends Model
 
         $re = self::where([
             ['id', '<>', '2'],
-            ['id', '<>', '4'],
+            ['id', '<>', '3'],
         ])->get()->pluck('title', 'id')->toArray();
         return $re;
-        $cateaory = Cache::rememberForever('get_category',function (){
-
-        });
-        return $cateaory;
     }
     /*后台end*/
-
-
 
     /*前台*/
 
@@ -70,7 +64,21 @@ class Category extends Model
      */
     public function getTopNav()
     {
-         return self::where('pid',0)->select('id','title','route')->orderBy('sort','desc')->get();
+        $result = self::where('pid',0)->select('id','title')->orderBy('sort','desc')->get();
+
+        foreach ($result as $key => $value){
+            //读取分类下的文章或者子分类 栏目4（我们的成绩）除外
+            if($value->id == 2 || $value->id == 3 ){
+                //新闻中心-返回分类
+                $result[$key]['list_title'] = self::where('pid',$value->id)->where('status',1)->select('id','title')->orderBy('sort','desc')->get();
+
+            }else{
+                //返回文章
+                $result[$key]['list_title'] = Article::where('cateaory_id',$value->id)->where('status',1)->select('id','title')->orderBy('sort','desc')->get();
+            }
+        }
+
+         return $result;
     }
 
 
@@ -81,6 +89,22 @@ class Category extends Model
             return self::where('pid',2)->with('articles')->get();
         });
 
+        return $result;
+    }
+
+
+    /**
+     * 首页业务范围
+     * @return Object
+     */
+    public function getHomeBusiness()
+    {
+        $result = Cache::rememberForever('get_home_business',function (){
+
+            $business['business'] = self::where('id',3)->first();
+            $business['business']['list'] = self::where('pid',3)->get();
+            return $business;
+        });
         return $result;
     }
 

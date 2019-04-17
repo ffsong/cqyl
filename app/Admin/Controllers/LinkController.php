@@ -91,6 +91,7 @@ class LinkController extends Controller
 
 //        $grid->id('Id');
         $grid->name('名称');
+        $grid->icon('图标')->image('',60,40);
         $grid->url('链接地址');
         $grid->sort('排序')->editable();
 
@@ -109,6 +110,7 @@ class LinkController extends Controller
 
 //        $show->id('Id');
         $show->name('名称');
+        $show->icon('图标');
         $show->url('链接地址');
         $show->created_at('创建时间');
         $show->updated_at('修改时间');
@@ -126,6 +128,7 @@ class LinkController extends Controller
         $form = new Form(new Link);
 
         $form->text('name', '名称')->rules('required',['required'=>'名称不能为空']);
+        $form->image('icon', '图标(大小：168 X 78)')->move('links')->uniqueName()->rules('required',['required'=>'名称不能为空']);
         $form->url('url', '地址')->rules('required',['required'=>'名称不能为空']);
         $form->number('sort', '排序')->default(100)->rules('required|max:3',
             [

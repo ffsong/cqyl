@@ -1,9 +1,9 @@
 
 @extends('layouts.app')
 
-@section('title','关于我们 | '.$common_data['config']['website'])
+@section('title','关于我们-'.$common_data['config']['website'])
 
-@section('description','关于我们 | '.$common_data['config']['website'])
+@section('description','关于我们-'.$common_data['config']['website'])
 
 @section('main')
 
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="col-lg-7 col-12 pt-4">
-                    <div class="content-font-size">
+                    <div class="content-font-size" style="min-height: 200px;" >
                         @foreach ($result as $article)
                             {!! $article->content !!}
                         @endforeach

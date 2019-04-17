@@ -90,12 +90,9 @@ class ArticleController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Article);
-        $grid->model()->where('status', 1)->where('cateaory_id','<>',4)->orderBy('id','desc');
+        $grid->model()->where('status', 1)->orderBy('id','desc');
         $grid->actions(function ($actions) {
             $actions->disableView();
-//            if ($actions->getKey() == 3 || $actions->getKey() == 4) {
-//
-//            }
         });
 
         //禁止导出
@@ -183,7 +180,7 @@ class ArticleController extends Controller
         $form->saved(function (Form $form) {
             if($form->model()->cateaory_id != 3 && $form->model()->cateaory_id != 5){
                 if (empty($form->model()->images)){
-                    $form->model()->images = 'default/about.jpg';
+                    $form->model()->images = 'default/default-02.png';
                     $form->model()->save();
                 }
             }

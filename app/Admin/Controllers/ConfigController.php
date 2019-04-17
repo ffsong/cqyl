@@ -22,6 +22,7 @@ class ConfigController extends Controller
      */
     public function index(Content $content)
     {
+        return redirect()->away('http://www.cqylaq.com/admin/config/1/edit');
         return $content
             ->header('系统')
             ->description('设置')
@@ -37,6 +38,7 @@ class ConfigController extends Controller
      */
     public function show($id, Content $content)
     {
+
         return $content
             ->header('Detail')
             ->description('description')
@@ -79,6 +81,7 @@ class ConfigController extends Controller
      */
     protected function grid()
     {
+        return redirect()->away('http://www.cqylaq.com/admin/config/1/edit');
         $grid = new Grid(new Config);
 
         $grid->actions(function ($actions) {
@@ -91,7 +94,8 @@ class ConfigController extends Controller
         $grid->disableFilter();
         $grid->disableExport();
         $grid->disableRowSelector();
-        $grid->disableActions();
+//        $grid->disableActions();
+
         //禁止导出
         $grid->disableExport();
 
@@ -134,6 +138,18 @@ class ConfigController extends Controller
     protected function form()
     {
         $form = new Form(new Config);
+
+        $form->tools(function (Form\Tools $tools) {
+
+            // 去掉`列表`按钮
+            $tools->disableList();
+
+            // 去掉`删除`按钮
+            $tools->disableDelete();
+
+            // 去掉`查看`按钮
+            $tools->disableView();
+        });
 
         $form->text('website', '公司名称');
         $form->text('phone', '联系电话');
