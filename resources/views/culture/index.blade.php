@@ -16,8 +16,14 @@
 
         <div class="text-center">
             <h3 class="mx-auto">企业宗旨</h3>
-            <div class="mt-3">
-                {!! $culture['ep']['content'] !!}
+
+            <div class=" row mt-3">
+                <div class="col-md-6">
+                    {!! $culture['ep']['content'] !!}
+                </div>
+                <div class="d-none d-md-block col-md-6">
+                    <img src="{{ asset('uploads/'.$culture['ep']['image']) }}" alt="{{ $culture['ep']['title'] }}" class="img-fluid" />
+                </div>
             </div>
         </div>
         {{--企业宗旨--}}
@@ -31,7 +37,7 @@
                 <div class="row">
                     @foreach($culture['sg'] as $value)
                         <div class="col-6 col-md-4 px-1 my-3">
-                            <img src="{{ asset('uploads/'.$value['image']) }}" alt="{{ $value['title'] }}" class="img-fluid" />
+                            <img src="{{ asset('uploads/'.$value['image']) }}" title="{{ $value['title'] }}" alt="{{ $value['title'] }}" class="img-fluid" />
                         </div>
                     @endforeach
                 </div>

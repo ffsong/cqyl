@@ -139,7 +139,7 @@
     <!--公司新闻-->
 
     <!-- 业务范围start -->
-    <div class="container py-5">
+    <div class="container pt-5 pb-3">
         <h6 class="py-1"> <span class="title-top-boder">{{ $ywfw['business']['title'] }}</span>
             <small class="small-color">&nbsp;{{ $ywfw['business']['en_title'] }} </small>
         </h6>
@@ -149,61 +149,29 @@
             @foreach($ywfw['business']['list'] as $business)
                 <div class="card">
                     <a class="home-business" href="{{ route('business',['id'=>$business->id]) }}">
-                        <img class="card-img-top" src="{{ asset($business['image']) }}" alt="{{ $business['title'] }}">
+                        <img class="card-img-top" src="{{ asset('uploads/'.$business['image']) }}" alt="{{ $business['title'] }}">
                         <div class="card-body">
                             <h5 class="card-title" style="font-size: 0.85rem;">{{ $business['title'] }}</h5>
                         </div>
                     </a>
                 </div>
             @endforeach
-
         </div>
     </div>
     <!-- 业务范围 end -->
 
-
-
-<!--行业案例 start-->
-{{--<div class="home-achievement" style="background-color: #f6f6f6" >--}}
-    {{--<div class="container py-5" >--}}
-        {{--<h6 class="py-1" style="text-align: left"> <span class="title-top-boder">行业案例</span>--}}
-            {{--<small class="small-color">&nbsp;--}}
-                {{--Industry Case--}}
-            {{--</small>--}}
-        {{--</h6>--}}
-        {{--<div class="row  ">--}}
-
-            {{--@foreach($article_data['industry_case'] as $industry_case)--}}
-                {{--<div class="col-6 col-md-4 col-lg-3">--}}
-                    {{--<a href="{{ route('industry',['id'=>$industry_case->id]) }}" >--}}
-                        {{--<div class="used-box-pic">--}}
-                            {{--<img src="{{ asset('uploads/'.$industry_case->images) }}" class="img-fluid">--}}
-                        {{--</div>--}}
-                        {{--<div class="used-box-text">--}}
-                            {{--<div class="title py-2">--}}
-                                {{--<h6>{{ $industry_case->title }}</h6>--}}
-                            {{--</div>--}}
-                            {{--<p class="introduction">{{ $industry_case->introduction }}</p>--}}
-                        {{--</div>--}}
-                    {{--</a>--}}
-                {{--</div>--}}
-            {{--@endforeach--}}
-            {{--</div>--}}
-    {{--</div>--}}
-{{--</div>--}}
-<!--行业案例 end-->
+    <hr>
 
 <!--合作伙伴 start-->
 <div class="home-customer mb-1"  >
-
-    <div class="container py-5" >
+    <div class="container py-2" >
         <h4 class="py-1 mb-4 text-center">合作伙伴共建专业安全的企业服务</h4>
         <img src="{{ asset('images/hzhbbanner.jpg') }}" class="img-fluid" style="width: 100%">
         <div class="row mt-3">
             @foreach($article_data['links'] as $link)
                 <div class="col-4 col-md-2 px-2">
                     <a href="{{ $link->url }}" target="_blank">
-                        <img src="{{ asset('uploads/'.$link->icon) }}" class="img-fluid" title="{{ $link->name }}" alt="{{ $link->name }}">
+                        <img src="{{ asset('/uploads/'.$link->icon) }}" class="img-fluid" title="{{ $link->name }}" alt="{{ $link->name }}">
                     </a>
                 </div>
             @endforeach
@@ -213,22 +181,16 @@
 <!--合作伙伴 end-->
     <hr>
 <!--联系我们 start-->
-<div class="mb-5" >
-    <div class="container py-2" >
+<div class="mb-4" >
+    <div class="container pt-2" >
         {{--<h4 class="py-1 mb-4 text-center">联系我们</h4>--}}
         <div class="row mt-3">
-            <div class="offset-lg-1 col-lg-3 ">
-                <p>公司地址：<span>{{ $common_data['config']['address'] }}</span></p>
-                <p>联系电话：<span>{{ $common_data['config']['phone'] }}</span></p>
-                <p>联系邮箱：<span>{{ $common_data['config']['email'] }}</span></p>
-            </div>
+
             <div class="col-lg-7">
                 <!--地图 start-->
                 <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=c36xsnTC0HTLcb9DNtpknAoSvGLbBS7h&s=1"></script>
                 <script type="text/javascript" src="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
                 <link rel="stylesheet" href="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
-
-
                 <div id="allmap" class="baidu-maps" style="height: 300px"></div>
 
                 <script type="text/javascript">
@@ -265,6 +227,23 @@
                     map.addOverlay(marker); //在地图中添加marker
                 </script>
             <!--地图 end-->
+            </div>
+
+            <div class="col-lg-5 ">
+                <div class="row">
+                    <div class="col-8 col-lg-12 pt-4">
+                        <p>公司地址：<span>{{ $common_data['config']['address'] }}</span></p>
+                        <p>联系电话：<span>{{ $common_data['config']['phone'] }}</span></p>
+                        <p>联系邮箱：<span>{{ $common_data['config']['email'] }}</span></p>
+                        <p>联系电话：<span>{{ $common_data['config']['extend_contact1'] }}</span></p>
+                        <p>联系电话：<span>{{ $common_data['config']['extend_contact2'] }}</span></p>
+                    </div>
+
+                    <div class=" col-4 d-block d-lg-none pt-4 text-center">
+                        <img src="{{ asset('/uploads/'.$common_data['config']['wechat_qrcode']) }}" class="img-fluid px-2">
+                        <p class="py-2">关注微信公众号</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

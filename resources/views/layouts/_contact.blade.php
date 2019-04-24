@@ -6,6 +6,12 @@
         联系电话：{{ $contact_us['phone'] }}
     </button>
     <button type="button" class="list-group-item list-group-item-action">
+        联系电话：{{ $contact_us['extend_contact1'] }}
+    </button>
+    <button type="button" class="list-group-item list-group-item-action">
+        联系电话：{{ $contact_us['extend_contact2'] }}
+    </button>
+    <button type="button" class="list-group-item list-group-item-action">
         电子邮件：{{ $contact_us['email'] }}
     </button>
     <button type="button" class="list-group-item list-group-item-action">

@@ -146,7 +146,7 @@ class CultureController extends Controller
 
         $form->select('category','分类')->options($this->category)->default(1)->rules('required',['required'=>'必填内容不能为空']);
         $form->text('title', '标题')->rules('required',['required'=>'必填内容不能为空']);
-        $form->image('image', '图片');
+        $form->image('image', '图片')->uniqueName();
         $form->editor('content', '内容');
         $form->number('sort', '排序')->default(100);
 

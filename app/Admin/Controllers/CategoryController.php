@@ -170,7 +170,7 @@ class CategoryController extends Controller
         if($param)  $id = $param['category'];
 
         $form->text('title', '分类名称')->rules('required',['required'=>'必填内容不能为空']);
-        $form->image('image', '分类图片（图片比例:348 X 232）');
+        $form->image('image', '分类图片');
 
         $form->select('pid', '上级分类')->options(function () use ($id){
             return Category::getAll($id);

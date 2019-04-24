@@ -94,7 +94,6 @@ class ArticleController extends Controller
         $grid->actions(function ($actions) {
             $actions->disableView();
         });
-
         //禁止导出
         $grid->disableExport();
 
@@ -103,18 +102,17 @@ class ArticleController extends Controller
             $filter->disableIdFilter();
             // 在这里添加字段过滤器
             $filter->equal('cateaory_id','分类')->select(Category::getCategory());
-
             $filter->like('title', '标题');
-
         });
 
         $grid->title('标题');
+        $grid->author('作者');
+
         $grid->cateaory_id('所属分类')->using(Category::getCategory());
+
         $grid->images('图片')->image('/uploads/',60,30);
 
         $grid->sort('排序')->editable();
-//        $grid->click_number('浏览量');
-        // $grid->status('状态')->switch($this->status);
 
         $grid->created_at('添加时间');
 
@@ -167,7 +165,8 @@ class ArticleController extends Controller
         $form->select('cateaory_id', '分类')->options(
            Category::getCategory()
         )->rules('required',['required'=>'名称不能为空']);
-//        $form->number('click_number', 'Click number');
+        $form->text('author', '作者');
+        $form->text('source', '来源');
         $form->textarea('introduction', '描述');
         $form->image('images', '图片')->uniqueName();
         $form->editor('content', '内容');
@@ -177,14 +176,14 @@ class ArticleController extends Controller
             $this->status
         )->default(1);
 
-        $form->saved(function (Form $form) {
-            if($form->model()->cateaory_id != 3 && $form->model()->cateaory_id != 5){
-                if (empty($form->model()->images)){
-                    $form->model()->images = 'default/default-02.png';
-                    $form->model()->save();
-                }
-            }
-        });
+//        $form->saved(function (Form $form) {
+//            if($form->model()->cateaory_id != 3 && $form->model()->cateaory_id != 5){
+//                if (empty($form->model()->images)){
+//                    $form->model()->images = 'default/default-02.png';
+//                    $form->model()->save();
+//                }
+//            }
+//        });
 
         return $form;
     }

@@ -395,6 +395,18 @@ footer{
 }
 
 
+.new-content img{
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 30px #ccc;
+    -moz-box-shadow: 0 0 30px #ccc;
+    -webkit-box-shadow: 0 0 30px #ccc;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+
 
 
 

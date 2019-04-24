@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
+
 class Article extends Model
 {
     public $table = 'articles';
@@ -75,9 +77,7 @@ class Article extends Model
     /**/
     public function getCreatedAtAttribute($value)
     {
-        return substr($value,5,5);
+        return substr($value,0,10);
     }
-
-
 
 }

@@ -180,12 +180,12 @@ class ArticleCustomerController extends Controller
             $this->status
         )->default(1);
 
-        $form->saved(function (Form $form) {
-                if (empty($form->model()->images)){
-                    $form->model()->images = 'default/customer_default.jpg';
-                    $form->model()->save();
-                }
-        });
+//        $form->saved(function (Form $form) {
+//                if (empty($form->model()->images)){
+//                    $form->model()->images = 'default/customer_default.jpg';
+//                    $form->model()->save();
+//                }
+//        });
 
 
         return $form;

@@ -22,7 +22,7 @@ class ConfigController extends Controller
      */
     public function index(Content $content)
     {
-        return redirect()->away('http://www.cqylaq.com/admin/config/1/edit');
+        return redirect()->away('https://www.cqylaq.com/admin/config/1/edit');
         return $content
             ->header('系统')
             ->description('设置')
@@ -81,7 +81,7 @@ class ConfigController extends Controller
      */
     protected function grid()
     {
-        return redirect()->away('http://www.cqylaq.com/admin/config/1/edit');
+        return redirect()->away('https://www.cqylaq.com/admin/config/1/edit');
         $grid = new Grid(new Config);
 
         $grid->actions(function ($actions) {
@@ -101,6 +101,8 @@ class ConfigController extends Controller
 
         $grid->website('公司名称')->editable();
         $grid->phone('联系电话')->editable();
+        $grid->phone('联系方式')->editable();
+        $grid->phone('联系方式')->editable();
         $grid->fax('传真')->editable();
         $grid->email('邮件')->editable();
         $grid->address('公司地址')->editable();
@@ -153,10 +155,13 @@ class ConfigController extends Controller
 
         $form->text('website', '公司名称');
         $form->text('phone', '联系电话');
+        $form->text('extend_contact1', '联系方式');
+        $form->text('extend_contact2', '联系方式');
         $form->text('fax', '传真');
         $form->email('email', '邮件');
         $form->text('address', '公司地址');
         $form->text('info', '描述');
+        $form->image('wechat_qrcode', '二维码');
 
         return $form;
     }

@@ -37,11 +37,15 @@
                         <h4 class="text-center">
                             {{ $new->title }}
                         </h4>
-                        <p class="text-center py-2">{{ $new->created_at }}</p>
+                        <p class="text-center pt-4 mb-2">
+                            <span class="float-left">来源：{{ $new->source }}</span>
+                            <span class="">作者：{{ $new->author }}</span>
+                            <span class="float-right">发表时间：{{ $new->created_at }}</span>
+                        </p>
 
-                        <hr style="border:1px dashed #dcdcdc; height:1px">
+                        <hr style="border:0.5px dashed #dcdcdc;" class="py-0 my-0">
 
-                        <div class="new-content mt-4 pt-2">
+                        <div class="new-content mt-4 ">
                             {!! $new->content !!}
                         </div>
 
