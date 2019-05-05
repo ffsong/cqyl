@@ -13,10 +13,7 @@
     <div class="container my-4 text-center" >
 
         {{--企业宗旨--}}
-
         <div class="text-center">
-            <h3 class="mx-auto">企业宗旨</h3>
-
             <div class=" row mt-3">
                 <div class="col-md-6">
                     {!! $culture['ep']['content'] !!}
@@ -32,7 +29,6 @@
 
         {{--职工园地--}}
         <div class="py-5 text-center">
-            <h3 class="mx-auto">职工园地</h3>
             <div class="text-center">
                 <div class="row">
                     @foreach($culture['sg'] as $value)
@@ -49,7 +45,6 @@
 
         {{--职工风采--}}
         <div class=" pb-5 text-center" id="foo" >
-            <h3 class="mx-auto">员工风采</h3>
             <div class="text-center">
                 <div class="row">
                     @foreach($culture['ed'] as $value)

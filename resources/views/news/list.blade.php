@@ -36,8 +36,8 @@
                         </div>
                         <div class="col-md-7">
                             <a href="{{ route('news',['cateaory_id' => $list->cateaory_id, 'article_id' => $list->id]) }}" class="news-list-text" style="color: #484848">
-                                <h6 class="py-1" >{{ $list->title }}</h6>
-                                <p style="line-height: 1.6rem;text-indent: 2em">{{ $list->introduction }}</p>
+                                <h6 class="py-1" >{{ str_limit($list->title,20,'...')  }}</h6>
+                                <p style="line-height: 1.6rem;text-indent: 2em">{{ str_limit($list->introduction,50,'...') }}</p>
                             </a>
                         </div>
                     </div>

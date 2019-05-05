@@ -8,29 +8,63 @@
 @section('main')
 
     <!--banner start-->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-    @foreach($common_data['banners'] as $key=> $banner)
-    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class="@if($key == 0)active  @endif banner-indicators"></li>
-    @endforeach
-    </ol>
-    <div class="carousel-inner">
+    <div id="carouselExampleIndicators" class="carousel slide my-slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @foreach($common_data['banners'] as $key=> $banner)
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class="@if($key == 0)active  @endif banner-indicators d-none d-md-block"></li>
+            @endforeach
+        </ol>
+        <div class="carousel-inner">
+            @foreach($common_data['banners'] as $key=> $banner)
+            <div class="carousel-item @if($key == 0) active  @endif">
+                <img class="img-fluid" src="{{ asset('/uploads/'.$banner->url) }}" alt="图片加载失败">
+            </div>
+            @endforeach
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
-    @foreach($common_data['banners'] as $key=> $banner)
-    <div class="carousel-item @if($key == 0) active  @endif">
-    <img class="d-block w-100" src="{{ asset('/uploads/'.$banner->url) }}" alt="First slide">
-    </div>
-    @endforeach
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-    </a>
-    </div>
+    <script type="text/javascript">
+        $(function () {
+            /**通用-banner大图自定义缩放**/
+            var zoomWidth = 992; //缩放阀值992px, 即所有小于992px的视口都会对原图进行缩放, 只是缩放比例不同
+            var maxWidth = 1920; //最大宽度1920px
+            var ratio = 1; //缩放比例
+            var viewWidth = window.innerWidth; // 视口宽度
+            var zoomSlider = function () {
+                if (viewWidth < 768) { //当视口小于768时(移动端), 按992比例缩放
+                    ratio = viewWidth / zoomWidth; //视口宽度除以阀值, 计算缩放比例
+                } else if (viewWidth < zoomWidth) { //当视口界于768与992之间时, bootstrap主宽度为750, 这区间图片缩放比例固定.
+                    ratio = zoomWidth / (zoomWidth + (zoomWidth - 750));
+                } else { // PC端不缩放
+                    ratio = 1;
+                }
+                var width = maxWidth * ratio; //缩放宽度
+                $(".my-slide img").each(function () {
+                    $(this).css({
+                        "width": width,
+                        "max-width": width,
+                        "margin-left": -(width - viewWidth) / 2
+                    }); //图片自适应居中, 图片宽度与视口宽度差除以2的值, 设置为负margin
+                });
+            }
+
+            zoomSlider(); //页面加载时初始化并检查一次.
+            /**视口发生变化时的事件**/
+            $(window).resize(function () {
+                viewWidth = window.innerWidth; // 重置视口宽度
+                zoomSlider();//判断是否绽放banner
+            });
+        });
+    </script>
+
     <!--banner end-->
 
     <!--关于我们-->
@@ -114,7 +148,7 @@
                                 @foreach($article_data['news'][0]['list'] as $key => $article)
                                     <div class="carousel-item @if($key == 0) active @endif">
                                         <a href="{{ route('news',['cateaory_id' => $article->cateaory_id, 'article_id' => $article->id]) }}">
-                                            <img class="d-block w-100" style="max-height: 340px;min-height: 340px"
+                                            <img class="d-block w-100"
                                                  src="/uploads/{{ $article['images'] }}" alt=" slide" title="{{ $article->title }}">
                                         </a>
                                     </div>

@@ -90,6 +90,7 @@ class ImageController extends Controller
 
         $grid->name('名称');
         $grid->url('路径')->image();
+        $grid->small_url('小屏路径')->image();
         $grid->created_at('创建时间');
         $grid->updated_at('更改时间');
 
@@ -132,7 +133,8 @@ class ImageController extends Controller
 
         $form->text('name', '图片名称')->rules('required',['required'=>'必填内容不能为空']);
 
-        $form->image('url', 'Url')->move('banners')->uniqueName()->rules('required',['required'=>'必填内容不能为空']);
+        $form->image('url', '大屏')->move('banners')->uniqueName()->rules('required',['required'=>'必填内容不能为空']);
+        $form->image('small_url', '小屏')->move('banners')->uniqueName()->rules('required',['required'=>'必填内容不能为空']);
 
         return $form;
     }
