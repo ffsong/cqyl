@@ -28,7 +28,7 @@ class Category extends Model
             $re = self::getCategory();
         }else{
             $re = self::all()->pluck('title', 'id')->toArray();
-            unset($re[$id]);
+//            unset($re[$id]);
         }
 
         array_unshift($re,'顶级分类');
@@ -39,10 +39,7 @@ class Category extends Model
     public static function getCategory()
     {
 
-        $re = self::where([
-            ['id', '<>', '2'],
-            ['id', '<>', '3'],
-        ])->get()->pluck('title', 'id')->toArray();
+        $re = self::where('status',1)->get()->pluck('title', 'id')->toArray();
         return $re;
     }
     /*后台end*/
@@ -67,11 +64,17 @@ class Category extends Model
         $result = self::where('pid',0)->select('id','title')->orderBy('sort','desc')->get();
 
         foreach ($result as $key => $value){
-            //读取分类下的文章或者子分类 栏目4（我们的成绩）除外
-            if($value->id == 2 || $value->id == 3 ){
-                //新闻中心-返回分类
-                $result[$key]['list_title'] = self::where('pid',$value->id)->where('status',1)->select('id','title')->orderBy('sort','desc')->get();
+            //读取分类下的文章或者子分类
+            if($value->id == 2 || $value->id == 3 || $value->id == 4 || $value->id == 12){
+                //新闻中心-返回分类  ->whereIn('id', )
+                $result[$key]['list_title'] = self::where('pid',$value->id)
+                    ->where('status',1)->select('id','title')->orderBy('sort','desc')->get();
 
+                //顶级栏目下有子栏目和文章的情况
+                if($value->id == 12){
+                    $result[$key]['list_article'] = Article::where('cateaory_id',$value->id)->where('status',1)
+                        ->select('id','cateaory_id','title')->orderBy('sort','desc')->first();
+                }
             }else{
                 //返回文章
                 $result[$key]['list_title'] = Article::where('cateaory_id',$value->id)->where('status',1)->select('id','title')->orderBy('sort','desc')->get();
@@ -91,7 +94,6 @@ class Category extends Model
 
         return $result;
     }
-
 
     /**
      * 首页业务范围

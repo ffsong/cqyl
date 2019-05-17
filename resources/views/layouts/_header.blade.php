@@ -34,8 +34,8 @@
                                 {{ $categorys[0]['title'] }}
                             </a>
 
-                            <a class="nav-link text-center nav-color d-none d-lg-block" href="#" id="navbarDropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link text-center nav-color d-none d-lg-block" href="{{ route('abouts',['id'=>$categorys[0]['id']]) }}" id="navbarDropdownMenuLink"
+                               data-toggle="" aria-haspopup="true" aria-expanded="false">
                                 {{ $categorys[0]['title'] }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -49,17 +49,21 @@
 
                     <div class="col-sm-7ths">
                         <li class=" nav-item dropdown nva-{{ active_class(if_route('news')) }}">
-                            <a class="nav-link text-center nav-color d-block d-lg-none" href="{{ route('news',['category'=>6]) }}">
+                            {{--小屏目录--}}
+                            <a class="nav-link text-center nav-color d-block d-lg-none"
+                               href="{{ route('news',['category_id'=>$categorys[1]['list_title'][0]['id']]) }}">
                                 {{ $categorys[1]['title'] }}
                             </a>
+                            {{--小屏目录--}}
 
-                            <a class="nav-link text-center nav-color d-none d-lg-block" href="#" id="navbarDropdownMenuLink1"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link text-center nav-color d-none d-lg-block"
+                               href="{{ route('news',['category_id'=>$categorys[1]['list_title'][0]['id']]) }}" id="navbarDropdownMenuLink1"
+                               data-toggle="" aria-haspopup="true" aria-expanded="false">
                                 {{ $categorys[1]['title'] }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
                                 @foreach($categorys[1]['list_title'] as $article)
-                                    <a class="dropdown-item" href="{{ route('news',['category'=>$article->id]) }}">{{ $article->title }}</a>
+                                    <a class="dropdown-item" href="{{ route('news',['category_id'=>$article->id]) }}">{{ $article->title }}</a>
                                 @endforeach
                             </div>
 
@@ -69,12 +73,14 @@
                     <div class="col-sm-7ths">
                         <li class=" nav-item dropdown nva-{{ active_class(if_route('business')) }}">
 
-                            <a class="nav-link text-center nav-color d-block d-lg-none" href="{{ route('business',['id'=>9]) }}">
+                            <a class="nav-link text-center nav-color d-block d-lg-none"
+                               href="{{ route('business',['id'=>$categorys[2]['list_title'][0]['id']]) }}">
                                 {{ $categorys[2]['title'] }}
                             </a>
 
-                            <a class="nav-link text-center nav-color d-none d-lg-block " href="#" id="navbarDropdownMenuLink2"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link text-center nav-color d-none d-lg-block"
+                               href="{{ route('business',['id'=>$categorys[2]['list_title'][0]['id']]) }}" id="navbarDropdownMenuLink2"
+                               data-toggle="" aria-haspopup="true" aria-expanded="false">
                                 {{ $categorys[2]['title'] }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
@@ -89,20 +95,65 @@
                     </div>
 
                     <div class="col-sm-7ths">
-                        <li class=" nav-item nva-{{ active_class(if_route('culture')) }}">
-                            <a class="nav-link text-center nav-color" href="{{ route('culture') }}">
+                        <li class=" nav-item dropdown nva-{{ active_class(if_route('culture')) }}">
+                            {{--小屏目录--}}
+                            <a class="nav-link text-center nav-color d-block d-lg-none"
+                               href="{{ route('culture',
+                                   ['category_id'=>$categorys[5]['list_article']['cateaory_id'],'article_id'=>$categorys[5]['list_article']['id']]) }}">
                                 {{ $categorys[5]['title'] }}
                             </a>
+                            {{--小屏目录--}}
+
+                            <a class="nav-link text-center nav-color d-none d-lg-block"
+                               href="{{ route('culture',
+                                   ['category_id'=>$categorys[5]['list_article']['cateaory_id'],'article_id'=>$categorys[5]['list_article']['id']]) }}"
+                               id="navbarDropdownMenuLink1"
+                               data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                {{ $categorys[5]['title'] }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                                <a class="dropdown-item"
+                                   href="{{ route('culture',
+                                   ['category_id'=>$categorys[5]['list_article']['cateaory_id'],'article_id'=>$categorys[5]['list_article']['id']]) }}">
+                                    {{ $categorys[5]['list_article']['title'] }}
+                                </a>
+
+                                @foreach($categorys[5]['list_title'] as $article)
+                                    <a class="dropdown-item" href="{{ route('culture',['category_id'=>$article->id]) }}">
+                                        {{ $article->title }}
+                                    </a>
+                                @endforeach
+                            </div>
+
                         </li>
                     </div>
 
+
                     <div class="col-sm-7ths">
-                        <li class=" nav-item nva-{{ active_class(if_route('industry')) }}">
-                            <a class="nav-link text-center nav-color" href="{{ route('industry') }}">
+                        <li class=" nav-item dropdown nva-{{ active_class(if_route('industry')) }}">
+
+                            {{--小屏目录--}}
+                                <a class="nav-link text-center nav-color d-block d-lg-none"
+                                   href="{{ route('industry',['category_id'=>$categorys[3]['list_title'][0]['id']]) }}">
+                                    {{ $categorys[3]['title'] }}
+                                </a>
+                            {{--小屏目录--}}
+
+                            <a class="nav-link text-center nav-color d-none d-lg-block"
+                               href="{{ route('industry',['category_id'=>$categorys[3]['list_title'][0]['id']]) }}" id="navbarDropdownMenuLink1"
+                               data-toggle="" aria-haspopup="true" aria-expanded="false">
                                 {{ $categorys[3]['title'] }}
                             </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                                @foreach($categorys[3]['list_title'] as $article)
+                                    <a class="dropdown-item" href="{{ route('industry',['category_id'=>$article->id]) }}">{{ $article->title }}</a>
+                                @endforeach
+                            </div>
+
                         </li>
                     </div>
+
+
                     <div class="col-sm-7ths">
                         <li class=" nav-item nva-{{ active_class(if_route('contacts')) }}">
                             <a class="nav-link text-center nav-color" href="{{ route('contacts') }}">

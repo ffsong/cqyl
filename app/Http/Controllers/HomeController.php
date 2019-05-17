@@ -11,10 +11,7 @@ use App\Config;
 use App\Image;
 use App\Message;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
 use App\Link;
-use App\Culture;
 
 class HomeController extends Controller
 {
@@ -31,7 +28,6 @@ class HomeController extends Controller
         $this->common_data['banners'] = Image::getBanner();
         //配置文件
         $this->common_data['config'] = Config::getConfig();
-
     }
 
     //首页
@@ -42,8 +38,16 @@ class HomeController extends Controller
         $article_data = $article->getHomeArticle();
 
         $article_data['news'] = $category->getHomeNews();
+
+        //新闻的第一个分类id
+        $category_id = $article_data['news'][0]['id'];
+
         //组合首页新闻
         $article_data['news'] = $article->getNewLists($article_data['news']);
+
+        //图片列表
+        $article_data['new_img_list'] = $article->getNewListImgs($category_id);
+
         //合作伙伴
         $article_data['links'] = $link->getLink();
         //业务范围
@@ -66,12 +70,12 @@ class HomeController extends Controller
 
         $common_data = $this->common_data;
 
-        $paginate = self::PAGINATE; //默认页码
-
         $new_categorys = $category->getHomeNews();
 
         if (empty($article_id)) {
-            $article_lists = $article->where('cateaory_id', $category_id)->where('status', 1)->orderBy('sort', 'desc')->paginate($paginate);
+            $article_lists = $article->where('cateaory_id', $category_id)->where('status', 1)
+                ->orderBy('sort','desc')->orderBy('id','desc')->paginate(self::PAGINATE);
+
             return view('news.list', compact('common_data', 'new_categorys', 'article_lists'));
         }
 
@@ -97,28 +101,58 @@ class HomeController extends Controller
     }
 
     //企业文化
-    public function culture(Culture $culture){
+    public function culture(Article $article, Category $category, $category_id, $article_id = 0){
         $common_data = $this->common_data;
 
-        $culture = $culture->getList();
+        //分类
+        $sub_classification = $category->where('pid',12)->get();
 
-        return view('culture.index',compact('common_data','culture'));
-    }
+        //文章
+        $article_ = Article::where('cateaory_id',12)->where('status',1)
+            ->select('id','cateaory_id','title')->first();
 
-    //行业案例
-    public function customer(Article $article ,$id=0)
-    {
-        $common_data = $this->common_data;
-
-        if(empty($id)){
-            $customer_data = $article->where('cateaory_id', 4)->where('status', 1)->orderBy('sort', 'desc')->paginate(12);
-            return view('customers.index', compact('common_data', 'customer_data'));
+        if(empty($article_id)){
+            $customer_data = $article->where('cateaory_id', $category_id)->where('status', 1)
+                ->orderBy('sort', 'desc')->orderBy('id','desc')->paginate(self::PAGINATE);
+            return view('culture.list',compact('common_data', 'customer_data', 'article_', 'sub_classification'));
         }
 
         //详情页
-        $result = $article->find($id);
+        $result = $article->where('cateaory_id', $category_id)->where('id', $article_id)->where('status', 1)->first();
+        if($category_id == 12 ){
+            return view('culture.show_', compact('common_data', 'result', 'article_' ,'sub_classification'));
+        }
+        return view('culture.show', compact('common_data', 'result', 'article_' ,'sub_classification'));
+    }
 
-        return view('customers.show', compact('common_data', 'result'));
+
+
+    //行业案例
+    public function customer(Article $article ,Category $category, $category_id, $id=0)
+    {
+        $common_data = $this->common_data;
+
+        //处理子分类问题 如果存在子分类 重定向到第一个子分类
+        $child_category = $category->where('pid',$category_id)->first();
+        if(!empty($child_category)){
+            return redirect()->route('industry', ['category_id' => $child_category->id]);
+        }
+
+        $sub_classification = $category->where('pid',4)->get();
+        foreach ($sub_classification as $key => $value){
+            $sub_classification[$key]['children'] = $category->where('pid',$value->id)->get();
+        }
+
+        if(empty($id)){
+            $customer_data = $article->where('cateaory_id', $category_id)->where('status', 1)
+                ->orderBy('sort', 'desc')->orderBy('id','desc')->paginate(self::PAGINATE);
+            return view('customers.list', compact('common_data', 'customer_data', 'sub_classification'));
+        }
+
+        //详情页
+        $result = $article->where('cateaory_id', $category_id)->where('id', $id)->where('status', 1)->first();
+
+        return view('customers.show', compact('common_data', 'result','sub_classification'));
     }
 
     //联系我们

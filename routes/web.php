@@ -26,10 +26,10 @@ Route::post('/newPage', 'HomeController@newPage')->name('newPage');
 Route::get('/business/{id?}', 'HomeController@business')->name('business');
 
 //企业文化
-Route::get('/culture', 'HomeController@culture')->name('culture');
+Route::get('/culture/{category_id}/{article_id?}', 'HomeController@culture')->name('culture');
 
 //行业案例
-Route::get('/industry/{id?}', 'HomeController@customer')->name('industry');
+Route::get('/industry/{category_id}/{id?}', 'HomeController@customer')->name('industry');
 
 //联系我们
 Route::get('/contacts/{id?}', 'HomeController@contact')->name('contacts');

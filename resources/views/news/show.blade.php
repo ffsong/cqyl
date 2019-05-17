@@ -1,23 +1,24 @@
 
 @extends('layouts.app')
 
-@section('title','公司新闻-'.$common_data['config']['website'])
+@section('title','新闻动态-'.$common_data['config']['website'])
 
-@section('description','公司新闻-'.$common_data['config']['website'])
+@section('description','新闻动态-'.$common_data['config']['website'])
 
 @section('main')
 
-    @include('layouts._breadcrumb',
-    [
-        'nav'=>[
-            'category_title' => $new->cateaory->title, //新闻分类title
-            'category_id' => $new->cateaory_id, //新闻分类id
-            'article_title' => $new->title, //文章title
-    ]])
+    {{--@include('layouts._breadcrumb',--}}
+    {{--[--}}
+        {{--'nav'=>[--}}
+            {{--'category_title' => $new->cateaory->title, //新闻分类title--}}
+            {{--'category_id' => $new->cateaory_id, //新闻分类id--}}
+            {{--'article_title' => $new->title, //文章title--}}
+    {{--]])--}}
+    @include('layouts._breadcrumb',['title'=>'新闻动态'])
 
     <!--content start-->
 
-    <div class="container py-4 " >
+    <div class="container py-2 " >
         <div class="row ">
             <div class="col-lg-3 d-none d-lg-block new-category">
                 <nav class="nav text-center flex-column">
@@ -30,7 +31,7 @@
 
                 @include('layouts._contact',['contact_us'=>$common_data['config']])
             </div>
-            <div class="col-lg-9 py-4 px-4">
+            <div class="col-lg-9 pt-4 px-4">
                 <div class="row mx-auto">
                     <div class="w-100 new-show">
                     @if(!empty($new))
@@ -64,6 +65,10 @@
     </div>
 
     <!--content end-->
-
+    <script>
+        $(function () {
+            $(".new-content").find('img').parent('p').css({"text-indent":"0em"})
+        })
+    </script>
 
 @endsection

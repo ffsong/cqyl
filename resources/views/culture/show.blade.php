@@ -1,13 +1,21 @@
 
 @extends('layouts.app')
 
-@section('title','经典案例-'.$common_data['config']['website'])
+@section('title','行业案例-'.$common_data['config']['website'])
 
-@section('description','经典案例-'.$common_data['config']['website'])
+@section('description','行业案例-'.$common_data['config']['website'])
 
 @section('main')
 
-    @include('layouts._breadcrumb',['title'=>$result->cateaory->title])
+    {{--@include('layouts._breadcrumb',--}}
+    {{--[--}}
+        {{--'nav'=>[--}}
+            {{--'category_title' => $result->cateaory->title, //新闻分类title--}}
+            {{--'category_id' => $result->cateaory_id, //新闻分类id--}}
+            {{--'article_title' => $result->title, //文章title--}}
+    {{--]])--}}
+
+    @include('layouts._breadcrumb',['title'=>'企业文化'])
 
     <!--content start-->
 
@@ -15,39 +23,19 @@
         <div class="row ">
             <div class="col-lg-3 d-none d-lg-block new-category">
                 <nav class="nav text-center flex-column">
-                    <div id="accordion">
-                        <div class="card" style="border: none">
-                            @foreach($sub_classification as $key => $category)
+                    <a class="nav-link my-1 py-3 {{ active_class((if_route('culture') &&
+                         if_route_param('category_id', $article_['cateaory_id']))) }}"
+                       href="{{ route('culture',
+                                ['category_id'=>$article_['cateaory_id'],'article_id'=>$article_['id']]
+                                ) }}">
+                        {{ $article_['title'] }}
+                    </a>
 
-                                @if(count($category['children']))
-
-                                    <a class=" nav-link my-1 py-3" data-toggle="collapse"
-                                       data-target="#collapse{{ $key }}"
-                                       aria-expanded="true"
-                                       aria-controls="collapse{{ $key }}">
-                                        {{ $category->title }}
-                                    </a>
-
-                                    <div id="collapse{{ $key }}" class="collapse show" aria-labelledby="heading{{ $key }}" data-parent="#accordion">
-                                        @foreach($category['children'] as $data)
-                                            <a class="nav-link my-1 py-2 {{ active_class((if_route('industry') &&
-                         if_route_param('category_id', $data->id))) }}"
-                                               href="{{ route('industry',['category_id'=>$data->id]) }}">{{ $data->title }}</a>
-                                        @endforeach()
-                                    </div>
-
-                                @else
-
-                                    <a class="nav-link my-1 py-3
-                                            {{ active_class((if_route('industry') && if_route_param('category_id', $category->id))) }}"
-                                       href="{{ route('industry',['category_id'=>$category->id]) }}">
-                                        {{ $category->title }}
-                                    </a>
-                                @endif
-
-                            @endforeach
-                        </div>
-                    </div>
+                    @foreach($sub_classification as $category)
+                        <a class="nav-link my-1 py-3 {{ active_class((if_route('culture') &&
+                         if_route_param('category_id', $category->id))) }}"
+                           href="{{ route('culture',['category_id'=>$category->id]) }}">{{ $category->title }}</a>
+                    @endforeach()
                 </nav>
 
                 @include('layouts._contact',['contact_us'=>$common_data['config']])
@@ -86,10 +74,8 @@
     </div>
 
     <!--content end-->
-
     <script>
         $(".new-content").find('img').parent('p').css({"text-indent":"0em"})
     </script>
-
 
 @endsection

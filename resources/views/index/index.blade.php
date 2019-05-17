@@ -131,27 +131,26 @@
                     </div>
                     {{--列表--}}
                 </div>
-
                 <div class="col-lg-7 d-none d-lg-block">
                     <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            @if(isset($article_data['news'][0]))
-                                @foreach($article_data['news'][0]['list'] as $key => $article)
-                                    <li data-target="#carouselExampleIndicators1" data-slide-to="{{ $key }}"
-                                        @if($key == 0) class="active" @endif >
-                                    </li>
+                            @if(isset($article_data['new_img_list']))
+                                @foreach($article_data['new_img_list'] as $key => $article)
+                                        <li data-target="#carouselExampleIndicators1" data-slide-to="{{ $key }}"
+                                            @if($key == 0) class="active" @endif >
+                                        </li>
                                 @endforeach
                             @endif
                         </ol>
                         <div class="carousel-inner">
-                            @if(isset($article_data['news'][0]))
-                                @foreach($article_data['news'][0]['list'] as $key => $article)
-                                    <div class="carousel-item @if($key == 0) active @endif">
-                                        <a href="{{ route('news',['cateaory_id' => $article->cateaory_id, 'article_id' => $article->id]) }}">
-                                            <img class="d-block w-100"
-                                                 src="/uploads/{{ $article['images'] }}" alt=" slide" title="{{ $article->title }}">
-                                        </a>
-                                    </div>
+                            @if(isset($article_data['new_img_list']))
+                                @foreach($article_data['new_img_list'] as $key => $value)
+                                        <div class="carousel-item @if($key == 0) active @endif">
+                                            <a href="{{ route('news',['cateaory_id' => $value->cateaory_id, 'article_id' => $value['id']]) }}">
+                                                <img class="d-block w-100"
+                                                     src="/uploads/{{ $value['images'] }}" alt="{{ $value->title }}" title="{{ $value->title }}">
+                                            </a>
+                                        </div>
                                 @endforeach
                             @endif
                         </div>

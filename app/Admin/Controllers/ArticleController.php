@@ -168,22 +168,13 @@ class ArticleController extends Controller
         $form->text('author', '作者');
         $form->text('source', '来源');
         $form->textarea('introduction', '描述');
-        $form->image('images', '图片')->uniqueName();
+        $form->image('images', '图片')->removable()->uniqueName();
         $form->editor('content', '内容');
-        $form->file('enclosure','附件');
+        $form->file('enclosure','附件')->removable();
         $form->number('sort', '排序')->default(100);
         $form->switch('status', '状态')->states(
             $this->status
         )->default(1);
-
-//        $form->saved(function (Form $form) {
-//            if($form->model()->cateaory_id != 3 && $form->model()->cateaory_id != 5){
-//                if (empty($form->model()->images)){
-//                    $form->model()->images = 'default/default-02.png';
-//                    $form->model()->save();
-//                }
-//            }
-//        });
 
         return $form;
     }

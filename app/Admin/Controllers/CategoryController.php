@@ -98,6 +98,9 @@ class CategoryController extends Controller
     {
         $grid = new Grid(new Category);
 
+
+        $grid->model()->orderBy('pid', 'asc');
+
         $grid->actions(function ($actions) {
             $actions->disableDelete();
             $actions->disableView();
@@ -113,6 +116,13 @@ class CategoryController extends Controller
 //        $grid->disableCreateButton(); //禁止添加
 
         $grid->title('分类名称');
+        $grid->pid('上级分类')->display(function ($id){
+            $title = Category::find($id);
+            if(empty($title)){
+                return '顶级分类';
+            }
+            return $title->title;
+        });
         $grid->image('分类图片')->image('',60,60);
 //        $grid->sort('排序')->editable();
 //        $grid->is_top('首页置顶')->switch($this->is_top);
@@ -170,7 +180,7 @@ class CategoryController extends Controller
         if($param)  $id = $param['category'];
 
         $form->text('title', '分类名称')->rules('required',['required'=>'必填内容不能为空']);
-        $form->image('image', '分类图片');
+        $form->image('image', '分类图片')->uniqueName();
 
         $form->select('pid', '上级分类')->options(function () use ($id){
             return Category::getAll($id);
